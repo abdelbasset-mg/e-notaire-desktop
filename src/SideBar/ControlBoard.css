@@ -1,0 +1,323 @@
+
+.component{
+    display: flex;
+    flex-direction: column;
+    width: 85%;    
+
+}
+/*----COMPONENT TITLE ----*/
+.title{
+    display: flex;
+    justify-content: end;
+    padding-right: 40px;
+    padding-bottom: 25px;
+    padding-top: 20px;
+}
+.title-1{
+    font-size: 22pt;
+    font-weight: bold;
+    color: #284A68;
+}
+/*----GENERAL INFORMATIONS AND TIME-----*/
+.second{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/*INFORMATIONS*/
+
+.info{
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-right: 2%;
+    width: 63%;
+    height: 100%;
+}
+.title-info{
+    font-size: 14pt;
+    color: #284A68;
+    font-weight: bold;
+    text-align: end;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+
+.circles{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+.circle{
+    display: flex;
+    flex-direction: column;
+
+}
+.c1{
+    background-color: #284A68;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.c2{
+    background-color: white;
+    width: 88px;
+    height: 88px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.number{
+    font-size: 16pt;
+    font-weight: bold;
+    color: #284A68;
+}
+
+.sousTitre{
+    color: #284A68;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    font-size: 13pt;
+}
+
+/*TIME*/
+
+.time{
+    display: flex;
+    flex-direction: column;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border-radius: 8px;
+    background-color: #284A68;
+    width: 25.7vw;
+    height: 100%;
+    margin-top: 15px;
+    margin-right: 1.6%;
+}
+.time-title{
+    text-align: end;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #DDB660;
+
+}
+.barre{
+    background-color: #DDB660;
+    width: 80%;
+    margin-left: 40px;
+    height: 0.01cm;
+
+}
+.time-time{
+    display: flex;
+    justify-content: end;
+    margin:20px 40px 15px;
+}
+.logoClock{
+    width: 37px;
+}
+.time-clock{
+    margin-right: 20px;
+
+}
+.time-icon{
+    margin-top: 2px;
+}
+.time-date{
+    display: flex;
+    justify-content: end;
+    margin-right:40px ;
+}
+
+
+/*------GRAPH--MOST REQUESTED CONTRACT--NEW CONTRACT------*/
+
+.foot-1{
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+/*GRAPH*/
+.title-chart{
+    font-size: 14pt;
+    color: #284A68;
+    font-weight: bold;
+    text-align: end;
+    padding-right: 50px;
+    margin: 2vh 0vw;
+    
+}
+.graph{
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border-radius: 8px;
+    margin-right: 2%;
+    margin-top: 3%;
+    width: 63%;
+    height: 90%;
+    
+    
+}
+.chart{
+    margin-left: -1cm;
+   
+}
+/*MOST REQUESTED AND NEW CONTRACT*/
+.mostRequ-newContr{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    margin-left: 1.5%;
+    width: 25.3vw;
+    margin-right: 2.2%;
+
+
+}
+/*MOST REQUESTED*/
+.mostRequ{
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border-radius: 8px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 25.7vw;
+    
+}
+
+
+.contract{
+    margin: 3.5% 2%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 16pt;
+}
+
+.ordre{
+    border: 1px solid black;
+    padding: 1% 1%;
+    border-radius:20% ;
+    background-color: #284A68;
+    color: white;
+    font-size: 0.6em;
+}
+.barre2{
+   display:flex;
+   justify-content: center;
+}
+.bardiv{
+    height: 0.01cm;
+    background-color: rgb(234, 234, 234);
+    width: 80%;
+}
+
+
+.title-mostRequ{
+    font-size: 14pt;
+    color: #0c0c0cb2;
+    font-weight: bold;
+    text-align: end;
+    padding-right: 50px;
+    margin: 2vh 0vw;
+
+}
+.Contracts{
+     box-sizing: border-box;
+}
+
+
+
+
+/*NEW CONTRACT*/
+.newContr{
+    height: 3cm;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    padding: 10px 70px ;
+    background-color: #DDB660;
+    color: white;
+    border: 1px solid #DDB660;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border-radius: 8px;
+    font-size: 16pt ;
+    text-decoration: none;
+}
+
+@media screen and (max-width : 950px){
+    .second{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .info{
+        width: 95%;
+        padding-bottom: 3%;
+    }
+    .time{
+        display: none;
+    }
+    
+    .foot-1{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .graph{
+        width: 95%;
+    }
+    .mostRequ-newContr{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    width: 100%;
+    
+    }
+    .mostRequ{
+        width: 95%;
+        margin-right: 4.3vw;
+        height: 100%;
+        box-sizing: border-box;
+        
+    }
+    .contract{
+        font-size: 16pt;
+        padding: 1%;
+        
+    }
+   .Contracts{
+    height: 100%;
+   }
+    .title-mostRequ{
+        display: flex;
+        justify-content: center;
+        margin-left: 13%;
+    }
+    .button{
+        padding: 1vw 6vw;
+        margin-top: 15vh;
+    }
+    
+}
+@media screen and (max-width:1300px){
+    .time-title{
+        font-size: 1.2em;
+    }
+    .time-date{
+        width: 90%;
+    }
+}
+
+
