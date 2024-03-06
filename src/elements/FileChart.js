@@ -3,12 +3,38 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 const FileGraph = () => {
     const initialData = [
-    { hour: '12:00', الملفات: 10 },
-    { hour: '01:00', الملفات: 25 },
-    { hour: '02:00', الملفات: 5 },
-    { hour: '03:00', الملفات: 40 },
-    { hour: '04:00', الملفات: 5 },
-    { hour: '05:00', الملفات: 32 },
+    { minute: '1', الملفات: 50 },
+    { minute: '2', الملفات: 50 },
+    { minute: '3', الملفات: 50 },
+    { minute: '4', الملفات: 100 },
+    { minute: '5', الملفات: 50 },
+    { minute: '6', الملفات: 60 },
+    { minute: '7', الملفات: 10 },
+    { minute: '8', الملفات: 50 },
+    { minute: '9', الملفات: 50 },
+    { minute: '10', الملفات: 50 },
+    { minute: '11', الملفات: 80 },
+    { minute: '12', الملفات: 50 },
+    { minute: '13', الملفات: 60 },
+    { minute: '14', الملفات: 50 },
+    { minute: '15', الملفات: 100 },
+    { minute: '16', الملفات: 50 },
+    { minute: '17', الملفات: 60 },
+    { minute: '18', الملفات: 10 },
+    { minute: '19', الملفات: 50 },
+    { minute: '20', الملفات: 50 },
+    { minute: '21', الملفات: 80 },
+    { minute: '22', الملفات: 50 },
+    { minute: '23', الملفات: 60 },
+    { minute: '24', الملفات: 50 },
+    { minute: '25', الملفات: 100 },
+    { minute: '26', الملفات: 50 },
+    { minute: '27', الملفات: 60},
+    { minute: '28', الملفات: 10 },
+    { minute: '29', الملفات: 50},
+    { minute: '30', الملفات: 50 },
+    
+    
 
 ];
 
@@ -42,7 +68,7 @@ const FileGraph = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line  type="monotone" dataKey="الملفات" stroke="#284A68" strokeWidth={4}  filter='url(#shadow)' activeDot={{ r: 10 ,fill:'#DDB660'  }} dot={{r:8, fill:'#DDB660', strokeWidth:2,stroke:'white'}}/>
+        <Line  type="monotone" dataKey="الملفات" stroke="#284A68" strokeWidth={4}  filter='url(#shadow)' activeDot={{ r: 10 ,fill:'#DDB660'  }} dot={{r:6, fill:'#DDB660', strokeWidth:2,stroke:'white'}}/>
         <defs>
     <filter id="shadow" x="-10" y="-10" width="300" height="300">
     <feDropShadow dx="-1" dy="3" stdDeviation="3" floodColor="#DDB660" />
