@@ -1,11 +1,12 @@
+
+import { NavLink, createBrowserRouter } from 'react-router-dom';
+import AddContract from '../AddContract/AddContract';
+import Clock from './elements-controlBoard/Clock';
+import DateC from './elements-controlBoard/DateC';
+import FileGraph from './elements-controlBoard/FileChart';
+import LogoClock from '../../icons/time.svg';
 import './ControlBoard.css';
-import {useState }from 'react';
-import LogoClock from '../icons/time.svg';
-import Clock from '../elements/Clock';
-import DateC from '../elements/DateC';
-import FileGraph from '../elements/FileChart';
-import AddContract from './AddContract';
-import { NavLink ,RouterProvider,createBrowserRouter} from 'react-router-dom';
+import { useConstants } from './Constants/Constants';
 const router = createBrowserRouter([
     {
         path:'/',
@@ -22,12 +23,7 @@ const router = createBrowserRouter([
 
 
 function ControlBoard(){
-    const [archiveConract,setArchiveContract] = useState(0)
-    const [archiveClients,setArchiveClients] = useState(0)
-    const [Models,setModels] = useState(0)
-    const [user,setUser] = useState("أحمد بوحمرة")
-
-
+    const { archiveConract,archiveClients,Models,user } = useConstants();
     return(
         <>
 
@@ -51,7 +47,7 @@ function ControlBoard(){
         
             <div className='time'>
                 
-                    <div className='time-title'>  مكتب الأستاذ  {user}</div><div className='barre'></div>
+                    <div className='time-title'>  مكتب الأستاذ  {user}</div><div className='barre-time'></div>
                     <div className='time-time'>
                         <div className='time-clock'><Clock  color="#DDB660" fontSize="30pt" fontWeight="Bold" fontFamily="monospace"/></div>
                         <div className='time-icon'><img src={LogoClock} className='logoClock'/></div>
