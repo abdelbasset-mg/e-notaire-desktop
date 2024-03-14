@@ -2,9 +2,11 @@
 .component{
     display: flex;
     flex-direction: column;
-    width: 85%;    
+    width: 100%;    
+    
 
 }
+
 /*----COMPONENT TITLE ----*/
 .title{
     display: flex;

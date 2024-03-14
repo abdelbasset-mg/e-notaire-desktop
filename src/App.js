@@ -22,6 +22,7 @@ import logoE from './icons/exit.svg';
 import logoE_N2 from './icons/logo2.svg'
 import React from 'react';
 import { useState } from 'react';
+import Model from './SideBar/Models/Model/Model'
 
 
 
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path:'/اعدادات',
         element:<Settings />
+      },
+      {
+        path:"/نماذج العقود/:model",
+        element:<Model />,
       }
     ]
 
