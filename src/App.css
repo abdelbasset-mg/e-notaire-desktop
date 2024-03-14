@@ -1,12 +1,17 @@
-
+@font-face {
+  font-family: "Changa";
+  src: url('./fonts/Changa-Medium.ttf') format('truetype');
+}
 *{
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: "Changa";
 }
 html{
   height: 100%;
 }
+
 
 
 .container{
@@ -34,7 +39,7 @@ html{
   line-height: 70px;
   user-select: none;
   padding-top: 30px;
-  padding-left: 10px;
+  padding-left: 15%;
 }
 .navlink{
   color: #284A68;
@@ -49,6 +54,11 @@ html{
   
 
 }
+.links{
+  margin-top: 10%;
+  background-color: white;
+}
+
 .l-ink{
   width:165px;
 
@@ -74,6 +84,7 @@ a{
 }
 .foot{
   padding-top: 100px;
+
   display: grid;
   grid-template-areas:
   "exit admin"
@@ -117,7 +128,7 @@ a{
   .SideBar-m{
     display: block;
     width: 10%;
-    height: 150%;
+    height: max-content;
     background-color: #ffffff;
     box-shadow: -3px 0px 10px 1px #DDB660;
 
@@ -164,10 +175,12 @@ a{
 }
 @media screen and (max-height:650px){
   .SideBar{
-    height: max-content;
+    height:max-content;
+    
   }
   .SideBar-m{
     height: max-content;
   }
+
 }
 
