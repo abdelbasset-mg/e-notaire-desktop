@@ -22,7 +22,8 @@ function AddContract() {
     // }
     return (
         <>
-            <div className='title'>
+        <div dir='rtl' className='container-AddContract'>
+            <div className='title-contract ' >
                 <div className='title-1'>تحرير عقد</div>
             </div>
 
@@ -46,7 +47,7 @@ function AddContract() {
                 </div>
             </div>
             <div className='contractContainer '>
-                <div className='titles'>
+                <div className='titles' dir='ltr'>
                     <div className='t1'><div className='t2 t2-1'>رقم العقد</div><div className='triangle'><img src={triangle}></img></div></div>
                     <div className='t1 t1-2'><div className='t2 t2-2'>طبيعة العقد</div><div className='triangle'><img src={triangle}></img></div></div>
                     <div className='t1'><div className='t2 t2-3'>عدد النماذج</div><div className='triangle'><img src={triangle}></img></div></div>
@@ -57,7 +58,7 @@ function AddContract() {
                             (data,index)=>{
                                 return(
                                     
-                                    <Link className='line-contract' to="" dir='ltr'>
+                                    <Link className='line-contract hover:bg-[#FFF5DE]' to="" dir='ltr'>
         
                                         <div className='numberOfContract'>{data.number}</div>
                                         <div key={data.natureOfContract} className='natureOfContract'>{data.natureOfContract}</div>
@@ -71,6 +72,7 @@ function AddContract() {
                         )
                         }
                  </div> 
+            </div>
             </div>
 
         </>
