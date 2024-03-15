@@ -1,0 +1,140 @@
+.container-setting{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.title-setting{
+    padding-right: 40px;
+    padding-bottom: 25px;
+    padding-top: 20px;
+}
+.title-1-setting{
+    font-size: 20pt;
+    font-weight: bold;
+    color: #284A68;
+}
+.soustitre-setting{
+    margin-right: 3%;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #284A68;
+}
+.info-setting{
+    
+    height: max-content;
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    margin-right: 3%;
+    margin-top: 3%;
+    display: flex;
+
+}
+.cln1-1{
+   display: flex;
+   flex-direction: column;
+   margin: 5% 5% 0 5%;
+
+}
+.cln2-1{
+    display: flex;
+   flex-direction: column;
+}
+form{
+    width: 100%;
+}
+.input-info-1{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    width: 80%;
+    margin-left: 3%;
+    padding: 1% 2%;
+    
+    
+    
+}
+.password-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    margin-top: 3%;
+   
+}
+.input-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2.5%;
+
+}
+.input-info-1:focus{
+    outline: none;
+    background-color: #FFF5DE;
+}
+ .label{
+    color: #284A68;
+    font-weight: bold;
+    padding: 1%;
+    width: 20%;
+}/*
+.room{
+    margin-top: 3%;
+}
+.buyer{
+    margin-top: 1%;
+} */
+::-webkit-outer-spin-button,::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+input[type=date]{
+   text-align: right;
+    
+}
+.password{
+    width: 90%;
+    height: max-content;
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    margin-right: 6%;
+}
+.Pass{
+    margin: 2vw 1vw 2vw 0.5vw;
+
+}
+
+.input-pass{
+    border-radius: 10px;
+    padding: 3% 3% 3% 0;
+    width: 100%;
+    
+}
+.input-pass:focus{
+    outline: none;
+   
+}
+.label-2{
+    margin-bottom: 4%;
+}
+.eye{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    margin-left: 1vw;
+    
+}
+.save{
+    margin-right: 6%;
+    width:90% ;
+    border-radius: 8px;
+    padding: 2%;
+    margin-top:7%;
+    margin-bottom: 5%;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+
+}
