@@ -97,8 +97,8 @@ function Root(){
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> احصائيات</NavLink></div><div className='icon-1 '><img src={logoS} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'>تحرير عقد</NavLink></div><div className='icon-1 '><img src={logoContr} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'>نماذج العقود</NavLink></div><div className='icon-1 '> <img src={logoModel} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> ارشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>ارشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> أرشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>أرشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اشعارات'>اشعارات</NavLink></div><div className='icon-1 '><img src={logoNotf} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'>اعدادات</NavLink></div><div className='icon-1 '><img src={logoSett} className='icon'/></div></div>
                   </div>
