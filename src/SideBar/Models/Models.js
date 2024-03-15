@@ -24,7 +24,7 @@ function AddContract() {
     return (
         <><div dir='rtl' className='container-AddContract'>
             <div className='title-contract'>
-                <div className='title-1-contract'>تحرير عقد</div>
+                <div className='title-1-contract'>نماذج العقود</div>
             </div>
 
             <div className=" soustitre-contract "> قائمة العقود</div>
