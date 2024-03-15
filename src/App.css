@@ -44,6 +44,7 @@ html{
 .navlink{
   color: #284A68;
   font-weight: bold;
+  
 }
 .link{
   display: flex;
@@ -57,6 +58,7 @@ html{
 .links{
   margin-top: 10%;
   background-color: white;
+  margin-right: 8%;
 }
 
 .l-ink{
@@ -64,7 +66,7 @@ html{
 
 }
 .icon{
-  width: 20px;
+  width: 25px;
   margin-top: 15px;
 }
 
