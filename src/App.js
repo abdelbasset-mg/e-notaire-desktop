@@ -23,6 +23,9 @@ import logoE_N2 from './icons/logo2.svg'
 import React from 'react';
 import { useState } from 'react';
 import Model from './SideBar/Models/Model/Model'
+import Model2 from './SideBar/Models/Model/Model2/Model2';
+
+
 
 
 
@@ -68,7 +71,12 @@ const router = createBrowserRouter([
       {
         path:"/نماذج العقود/:model",
         element:<Model />,
-      }
+      },
+     
+      {
+        path: "/نماذج العقود/:model/:Result",
+        element: <Model2 />,
+    }
     ]
 
   }

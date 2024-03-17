@@ -57,7 +57,7 @@ function ArchiveFiles(){
                         </div>
                         <div className="table-file">
                         {
-                                inputTableFiles.filter(file=>file.natureOfContract.startsWith(search)).map(
+                                inputTableFiles.filter(file=>file.natureOfContract.includes(search)).map(
                                     (info,index)=>{
                                         return(
                                             

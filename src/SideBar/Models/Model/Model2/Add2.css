@@ -1,0 +1,60 @@
+.L1{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.t{
+   margin-right: 10px;
+   margin-left: 80px;
+   color: #030229;
+}
+
+.C1{
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding: 8px 35px;
+    border-radius: 8px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    color: #DDB660;
+   align-items: center;
+
+ 
+   
+}
+.C1:focus {
+    background-color: #DDB660;
+    color: white; /* Couleur du texte */
+    /* Ajoutez d'autres styles selon vos besoins */
+}
+
+.btnContainer3{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    margin: 50px 80px 20px 00px;
+ 
+
+
+}
+.btnSave3{
+    margin-left: 20px;
+    background-color: #DDB660;
+    color: white;
+}
+.btnCancel3{
+    color: #DDB660;
+
+}
+.btnCancel3,.btnSave3{
+padding: 5px 30px;
+
+
+border: none;
+box-shadow: -2px 0px 8px 1px #DDB660;
+border-radius: 8px;
+
+}

@@ -6,7 +6,7 @@ const FileGraph = () => {
         if (active && payload && payload.length) {
             return (
                 <div className="custom-tooltip">
-                    <div className="label bg-[#030229] rounded-md text-white p-4">{`${payload[0].value}`}</div>
+                    <div className=" bg-[#030229] rounded-md text-white p-4">{`${payload[0].value}`}</div>
                 </div>
             );
         }
