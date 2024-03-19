@@ -73,10 +73,24 @@ html{
 .icon-1{
   padding-left: 10px;
 }
-a.active{
+a.active  {
   color: #DDB660;
   border-left: 10px solid #DDB660;
+
+  
+  
+
 }
+.height{
+  height: 100%;
+  width: 10px;
+  border-radius: 5px;
+  background: #DDB660;
+  display: none;
+
+}
+
+
 
 a{
   padding-left:0px;

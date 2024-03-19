@@ -55,7 +55,7 @@ function ArchiveClients(){
                         </div>
                         <div className="table-clt">
                         {
-                                inputTableClients.filter(client=>client.fullName.startsWith(search)).map(
+                                inputTableClients.filter(client=>client.fullName.includes(search)).map(
                                     (info,index)=>{
                                         return(
                                             

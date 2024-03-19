@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Model from './Model/Model'
 
 
-function AddContract() {
+export const  AddContract = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
@@ -50,7 +50,7 @@ function AddContract() {
                 </div>
                 <div className='scrollbar'>
                         {
-                        inputTable.filter(contract=>contract.natureOfContract.startsWith(result)).map(
+                        inputTable.filter(contract=>contract.natureOfContract.includes(result)).map(
                             (data,index)=>{
                                 return(
                                     
@@ -72,6 +72,7 @@ function AddContract() {
             </div>
 
         </>
+        
     )
 }
 

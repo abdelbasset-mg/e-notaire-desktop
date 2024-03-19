@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 function AddContract() {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
-    
+    const[model,setModel]=useState("");
+
     
     //let {number,natureOfContract,numberOfModels}=newContract;
     // function changeHandle(){
@@ -54,11 +55,11 @@ function AddContract() {
                 </div>
                 <div className='scrollbar' dir='rtl'>
                         {
-                        inputTable.filter(contract=>contract.natureOfContract.startsWith(result)).map(
+                        inputTable.filter(contract=>contract.natureOfContract.includes(result)).map(
                             (data,index)=>{
                                 return(
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' to="" dir='ltr'>
+                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data.natureOfContract)}  key={data.natureOfContract} to={`/نماذج العقود/${data.natureOfContract}`} dir='ltr'>
         
                                         <div className='numberOfContract'>{data.number}</div>
                                         <div key={data.natureOfContract} className='natureOfContract'>{data.natureOfContract}</div>
