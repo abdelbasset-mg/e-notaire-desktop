@@ -7,6 +7,7 @@ import FileGraph from './elements-controlBoard/FileChart';
 import LogoClock from '../../icons/time.svg';
 import './ControlBoard.css';
 import { useConstants } from './Constants/Constants';
+import SideBar from '../../SideBar';
 const router = createBrowserRouter([
     {
         path:'/',
@@ -25,7 +26,16 @@ const router = createBrowserRouter([
 function ControlBoard(){
     const { archiveConract,archiveClients,Models,user } = useConstants();
     return(
+        
         <>
+    <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+                <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
+
+        
+
 
     {/*------COMPONENT TITLE-------  */}
     <div className='title'>
@@ -97,6 +107,8 @@ function ControlBoard(){
             </div>
 
         </div>
+    </div>
+    </div>
     </div>
 </>
 )

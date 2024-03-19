@@ -1,0 +1,83 @@
+.element{
+    justify-content: center;
+    align-items: center;
+}
+.formulaire{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    justify-content: center;
+    align-items: center;
+
+}
+.inputs{
+    justify-content: center;
+    align-items: center;
+}
+.input{
+   
+    padding: 1.5% 0 1.5% 4vw;
+    border-radius: 10px;
+    padding-right: 8px;
+    width: 70%;
+}
+.input-user{
+    box-shadow: -3px 0px 10px 1px #DDB660;
+    border-radius: 10px;
+    width: 75%;
+
+}
+.log-in{
+    margin: 2% 0 2% 0;
+}
+.seepass{
+    box-shadow: -3px 0px 10px 1px #DDB660;
+    border-radius: 10px;
+    width: 75%;
+    padding-left: 2%;
+    padding: 0.5%;
+
+
+}
+.btnLogin{
+    width: 70%;
+    box-shadow: -3px 0px 10px 1px #DDB660;
+    background-color: #DDB660;
+    color: white;
+    border-radius: 8px;
+  
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.not{
+    font-size: 16pt;
+    margin-top: 5px;
+}

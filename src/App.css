@@ -56,7 +56,7 @@ html{
 
 }
 .links{
-  margin-top: 10%;
+  margin-top: 20%;
   background-color: white;
   margin-right: 8%;
 }
@@ -99,7 +99,7 @@ a{
   justify-content: end;
 }
 .foot{
-  padding-top: 100px;
+  margin-top: 90%;
 
   display: grid;
   grid-template-areas:
@@ -143,8 +143,7 @@ a{
   }
   .SideBar-m{
     display: block;
-    width: 10%;
-    height: max-content;
+
     background-color: #ffffff;
     box-shadow: -3px 0px 10px 1px #DDB660;
 

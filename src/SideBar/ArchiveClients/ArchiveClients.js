@@ -4,6 +4,7 @@ import triangle from '../../icons/triangle.svg';
 import { useConstants } from "./Constants/Constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SideBar from "../../SideBar";
 function ArchiveClients(){
     const {search,setSearch,inputTableClients}= useConstants();
     const [tableInfo,setTableInfo]=useState(
@@ -26,6 +27,12 @@ function ArchiveClients(){
     }
     
     return(
+        <>
+          <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+            <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
         <div className="container-clients" dir="rtl">
              <div className='title-clt '>
                 <div className='title-1-clt'>أرشيف الزبائن</div>
@@ -137,6 +144,8 @@ function ArchiveClients(){
 
             </div>
         </div>
+        </div></div>
+        </>
     )
 
 }

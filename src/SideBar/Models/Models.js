@@ -3,10 +3,13 @@ import triangle from '../../icons/triangle.svg';
 import './Models.css';
 import { useConstants } from '../AddContract/BtnSave/Constants';
 import { Link } from 'react-router-dom';
-import Model from './Model/Model'
+import Model from './Model/Model';
+import Add from '../AddContract/BtnSave/BtnSave';
+import SideBar from '../../SideBar';
 
 
-export const  AddContract = () => {
+
+export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
@@ -22,7 +25,16 @@ export const  AddContract = () => {
     //     seti(i+1)
     // }
     return (
-        <><div dir='rtl' className='container-AddContract'>
+        <>
+        <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+                <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
+
+
+
+        <div dir='rtl' className='container-AddContract'>
             <div className='title-contract'>
                 <div className='title-1-contract'>نماذج العقود</div>
             </div>
@@ -39,6 +51,11 @@ export const  AddContract = () => {
                         placeholder='البحث'
                         onChange={e=>setResult(e.target.value)}
                     />
+                </div>
+                <div className='addcontr'>
+                    <button className=' button1' onClick={()=> setOpenModel(true)}>اضافة عقد جديد</button>
+                    
+                    <Add open={openModel} onClose={()=> setOpenModel(false)}  />
                 </div>
                
             </div>
@@ -70,10 +87,12 @@ export const  AddContract = () => {
                  </div> 
             </div>
             </div>
+            </div>
+            </div>
 
         </>
         
     )
 }
 
-export default AddContract;
+export default Models;

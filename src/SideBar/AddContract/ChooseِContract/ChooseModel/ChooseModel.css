@@ -1,0 +1,93 @@
+
+
+
+form{
+    width: 100%;
+}
+.input-info-1{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    width: 80%;
+    margin-left: 3%;
+    padding: 1% 2%;
+    
+    
+    
+}
+.informations-contr{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-right: 2.5%;
+   
+   
+}
+.input-info-contr{
+    border-radius: 10px;
+    padding: 3% 3% 3% 0;
+    width:80%;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+}
+
+.Pass{
+    margin: 2vw 1vw 2vw 0.5vw;
+
+}
+.info-contr{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    width: 70%;
+
+}
+
+.input-contr{
+    border-radius: 10px;
+    margin: 2% 0 2% 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.input-contr-1:focus{
+    outline: none;
+    background-color: #FFF5DE;
+   
+}
+.input-contr-1{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    width: 80%;
+    margin-left: 4%;
+    padding: 1% 2%;
+}
+
+.informations-contr-1{
+    border-radius: 10px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+}
+.input-info-contr:focus{
+    outline: none;
+}
+.label-3{
+    color: #284A68;
+    font-weight: bold;
+    padding: 1%;
+    width: 17%;
+    margin-right: 1%;
+}
+
+
+.save-1,.down{
+    margin-right: 9%;
+    width:80% ;
+    border-radius: 8px;
+    padding: 2%;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+
+}

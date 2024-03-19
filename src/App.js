@@ -7,25 +7,14 @@ import AddContract from './SideBar/AddContract/AddContract';
 import Models from './SideBar/Models/Models';
 import ArchiveClients from './SideBar/ArchiveClients/ArchiveClients';
 import ArchiveFiles from './SideBar/ArchiveFiles/ArchiveFiles';
-import Notification from './SideBar/Notification/Notification';
 import Settings from './SideBar/Setting/Setting';
-import logoE_N from './icons/logo.svg';
-import logoC from './icons/control.svg';
-import logoS from './icons/statistics.svg';
-import logoContr from './icons/contract.svg';
-import logoModel from './icons/model.svg';
-import logoCli from './icons/client.svg';
-import logoFile from './icons/file.svg';
-import logoNotf from './icons/Notification.svg';
-import logoSett from './icons/Setting.svg';
-import logoE from './icons/exit.svg';
-import logoE_N2 from './icons/logo2.svg'
 import React from 'react';
-import { useState } from 'react';
 import Model from './SideBar/Models/Model/Model'
 import Model2 from './SideBar/Models/Model/Model2/Model2';
-
-
+import ChooseContract from './SideBar/AddContract/ChooseِContract/ChooseContract'; 
+import ChooseModel from './SideBar/AddContract/ChooseِContract/ChooseModel/ChooseModel';
+import Login from './Login-Sign/Login';
+import Sign from './Login-Sign/Sign'
 
 
 
@@ -60,10 +49,7 @@ const router = createBrowserRouter([
         path:'/ارشيف الملفات',
         element:<ArchiveFiles />
       },
-      {
-        path:'/اشعارات',
-        element:<Notification />
-      },
+    
       {
         path:'/اعدادات',
         element:<Settings />
@@ -76,7 +62,24 @@ const router = createBrowserRouter([
       {
         path: "/نماذج العقود/:model/:Result",
         element: <Model2 />,
-    }
+    },
+    {
+      path:"/تحرير عقد/:contract",
+      element:<ChooseContract />,
+    },
+   
+    {
+      path: "/تحرير عقد/:contract/:model",
+      element: <ChooseModel />,
+  },
+    { path:"/Login",
+    element:<Login />
+},
+{
+  path:"/Sign",
+  element:<Sign />
+}
+
     ]
 
   }
@@ -85,64 +88,15 @@ const router = createBrowserRouter([
 
 
 function Root(){
-  const [user,setUser] = useState("####")
+
 
   return<>
-            <div style={{ height: '100%' }} className="container">
+           <div style={{ height: '100%' }} className="container">
 
               <div style={{ height: '100%' }} className='component relative '>
                 <Outlet />
               </div> 
-            
-              <div  className='SideBar'>
 
-                  <div className='logoE-N'>
-                  <img src={logoE_N} className='logo' alt='logo'/>
-                  </div>
-
-                  <div className='links'>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' >لوحة التحكم</NavLink></div><div className='icon-1 '><img src={logoC} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> احصائيات</NavLink></div><div className='icon-1 '><img src={logoS} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'>تحرير عقد</NavLink></div><div className='icon-1 '><img src={logoContr} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'>نماذج العقود</NavLink></div><div className='icon-1 '> <img src={logoModel} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> أرشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>أرشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اشعارات'>اشعارات</NavLink></div><div className='icon-1 '><img src={logoNotf} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'>اعدادات</NavLink></div><div className='icon-1 '><img src={logoSett} className='icon'/></div></div>
-                  </div>
-
-                  <div className='foot'>
-                        <div className='admin'>{user}</div>
-                        <div className='admin-name'> {user} مكتب الاستاذ </div>
-                        <div className='exit'><button className='exit-Button'><img src={logoE} className='logoC'/></button></div>
-                  </div>
-              </div>
-             
-
-
-
-              {/*  SIDBAR QUAND ON REDUIT L ECRAN */}
-              <div  className='SideBar-m'>
-                  <div className='logoE-N2'>
-                        <img src={logoE_N2} className='logo2' alt='logo'/>
-                  </div>
-                  <div className='links'>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' ><div className='icon-1 '><img src={logoC} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> <div className='icon-1 i1 '><img src={logoS} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'><div className='icon-1 '><img src={logoContr} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'><div className='icon-1 '> <img src={logoModel} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> <div className='icon-1 i1 '><img src={logoCli} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'><div className='icon-1 '><img src={logoFile} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اشعارات'><div className='icon-1 '><img src={logoNotf} className='icon'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'><div className='icon-1 i1 i2 '><img src={logoSett} className='icon'/></div></NavLink></div></div>
-                  </div>
-                  <div className='foot'>
-                      <div className='exit'><button className='exit-Button'><img src={logoE} className='logoC'/></button></div>
-                  </div>
-              </div>
-          
-          
-          
           </div>
   
   

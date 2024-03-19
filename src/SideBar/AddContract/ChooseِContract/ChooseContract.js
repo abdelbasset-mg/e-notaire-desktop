@@ -2,35 +2,37 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import triangle from '../../../icons/triangle.svg';
 import direction from '../../../icons/direction.svg';
-import './Model.css';
-import Add from '../ButtonAdd/ButtonAdd';
-import { useConstants } from '../Model/typemodel';
+import '../../Models/Model/Model.css';
+import { useConstants } from './Constants';
 import SideBar from '../../../SideBar';
 
-function Model() {
+
+function ChooseModel() {
    
     const [openModel, setOpenModel] = useState(false);
-    const { setResult, Result, inputTable } = useConstants();
-    const { model } = useParams();
+    const { setResult, Result, inputTable,setModel,model } = useConstants();
+    const { contract } = useParams();
 
     return (
+        
         <>
-        <div className='flex flex-row-reverse h-[100%]'>
+         <div className='flex flex-row-reverse h-[100%]'>
         <div className='w-[13%]'>
             <SideBar />
         </div>
-        <div className='w-[87%]'>
+        <div className='w-[87%] flex flex-col'>
+      
         <div>
             <div className='title'>
-                <div className='title-1'>نماذج العقود</div>
+                <div className='title-1'>تحرير عقد</div>
             </div>
             <div>
                 <div className="content">
-                <Link className='soustitle' to='/نماذج العقود'><div>قائمة العقود</div></Link>
+                <Link className='soustitle' to='/تحرير عقد'><div>قائمة العقود</div></Link>
                     <div className="path">
                         <img src={direction} alt="Direction" />
                     </div>
-                    <div className="lien">{model}</div>
+                    <div className="lien">{contract}</div>
              
 
                 </div>
@@ -45,10 +47,6 @@ function Model() {
                         placeholder='البحث'
                         onChange={e => setResult(e.target.value)}
                     />
-                </div>
-                <div className='addcontr'>
-                    <button className='button1' onClick={() => setOpenModel(true)}>اضافة نموذج</button>
-                    <Add open={openModel} onClose={() => setOpenModel(false)} />
                 </div>
             </div>
             <div className='contractContainer'>
@@ -65,8 +63,8 @@ function Model() {
                         .map((data, index) => (
                             <Link
                                 dir='ltr'
-                                onClick={() => setResult(data.natureOfModel)} 
-                                to={`/نماذج العقود/${model}/${data.natureOfModel}`}
+                                onClick={() => setModel(data.natureOfModel)} 
+                                to={`/تحرير عقد/${contract}/${data.natureOfModel}`}
 
                                 className='line-contract hover:bg-[#FFF5DE]'
                             >
@@ -80,8 +78,9 @@ function Model() {
         </div>
         </div>
         </div>
-        </>
+       
+    </>
     );
 }
 
-export default Model;
+export default ChooseModel;
