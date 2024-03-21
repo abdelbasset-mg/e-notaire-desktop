@@ -13,6 +13,7 @@ import Add2 from './Add2';
 import './Model2.css';
 import Models from '../../Models'
 import Model from '../Model';
+import SideBar from '../../../../SideBar';
 const router = createBrowserRouter([
    
         {
@@ -47,6 +48,12 @@ function Model2() {
     console.log(Result);
 
     return (
+        <>
+        <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+            <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
         <div>
             <div>
                 <div className='title'>
@@ -114,6 +121,9 @@ function Model2() {
             </div>
             </div>
         </div>
+        </div>
+        </div>
+        </>
     );
 }
 

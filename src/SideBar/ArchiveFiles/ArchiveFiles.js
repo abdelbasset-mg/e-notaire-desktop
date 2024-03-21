@@ -4,6 +4,7 @@ import triangle from '../../icons/triangle.svg';
 import { useConstants } from "./Constants/Constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SideBar from "../../SideBar";
 function ArchiveFiles(){
     const {search,setSearch,inputTableFiles}= useConstants();
     const [tableInfoFiles,setTableInfoFiles]=useState(
@@ -28,6 +29,12 @@ function ArchiveFiles(){
     }
     
     return(
+        <>
+          <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+            <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
         <div className="container-file" dir="rtl">
              <div className='title-file '>
                 <div className='title-1-file'>أرشيف الملفات</div>
@@ -137,6 +144,9 @@ function ArchiveFiles(){
 
             </div>
         </div>
+        </div>
+        </div>
+        </>
     )
 
 }

@@ -19,15 +19,7 @@ export const useConstants = () => {
         {number:4,natureOfContract:"تأسيس شركة ذات مسؤولية محدودة",numberOfModels:0},
         {number:5,natureOfContract:"هبة حصص اجتماعية في الشركة",numberOfModels:0},
         {number:6,natureOfContract:"تنازل عن حصص في شركة",numberOfModels:0},
-        {number:1,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:1,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:1,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
-        {number:2,natureOfContract:"فسخ عقد شراكة بين شركة متعددة الجنسيات و مصنع حلي",numberOfModels:0},
+    
     ]);
     
 
