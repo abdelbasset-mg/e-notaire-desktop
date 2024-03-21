@@ -1,14 +1,14 @@
 import { Link,NavLink, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import './index.css';
-import ControlBoard from './SideBar/ControlBoard';
-import Statistics from './SideBar/Statistics';
-import AddContract from './SideBar/AddContract';
-import Models from './SideBar/Models';
-import ArchiveClients from './SideBar/ArchiveClients';
-import ArchiveFiles from './SideBar/ArchiveFiles';
-import Notification from './SideBar/Notification';
-import Settings from './SideBar/Setting';
+import ControlBoard from './SideBar/ControlBoard/ControlBoard';
+import Statistics from './SideBar/Statistic/Statistics';
+import AddContract from './SideBar/AddContract/AddContract';
+import Models from './SideBar/Models/Models';
+import ArchiveClients from './SideBar/ArchiveClients/ArchiveClients';
+import ArchiveFiles from './SideBar/ArchiveFiles/ArchiveFiles';
+import Notification from './SideBar/Notification/Notification';
+import Settings from './SideBar/Setting/Setting';
 import logoE_N from './icons/logo.svg';
 import logoC from './icons/control.svg';
 import logoS from './icons/statistics.svg';
@@ -22,6 +22,10 @@ import logoE from './icons/exit.svg';
 import logoE_N2 from './icons/logo2.svg'
 import React from 'react';
 import { useState } from 'react';
+import Model from './SideBar/Models/Model/Model'
+import Model2 from './SideBar/Models/Model/Model2/Model2';
+
+
 
 
 
@@ -63,7 +67,16 @@ const router = createBrowserRouter([
       {
         path:'/اعدادات',
         element:<Settings />
-      }
+      },
+      {
+        path:"/نماذج العقود/:model",
+        element:<Model />,
+      },
+     
+      {
+        path: "/نماذج العقود/:model/:Result",
+        element: <Model2 />,
+    }
     ]
 
   }
@@ -75,13 +88,13 @@ function Root(){
   const [user,setUser] = useState("####")
 
   return<>
-          <div className='container'>
+            <div style={{ height: '100%' }} className="container">
 
-              <div className='component'>
+              <div style={{ height: '100%' }} className='component relative '>
                 <Outlet />
-              </div>
-
-              <div className='SideBar'>
+              </div> 
+            
+              <div  className='SideBar'>
 
                   <div className='logoE-N'>
                   <img src={logoE_N} className='logo' alt='logo'/>
@@ -92,8 +105,8 @@ function Root(){
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> احصائيات</NavLink></div><div className='icon-1 '><img src={logoS} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'>تحرير عقد</NavLink></div><div className='icon-1 '><img src={logoContr} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'>نماذج العقود</NavLink></div><div className='icon-1 '> <img src={logoModel} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> ارشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>ارشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> أرشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>أرشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اشعارات'>اشعارات</NavLink></div><div className='icon-1 '><img src={logoNotf} className='icon'/></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'>اعدادات</NavLink></div><div className='icon-1 '><img src={logoSett} className='icon'/></div></div>
                   </div>
@@ -104,11 +117,12 @@ function Root(){
                         <div className='exit'><button className='exit-Button'><img src={logoE} className='logoC'/></button></div>
                   </div>
               </div>
+             
 
 
 
               {/*  SIDBAR QUAND ON REDUIT L ECRAN */}
-              <div className='SideBar-m'>
+              <div  className='SideBar-m'>
                   <div className='logoE-N2'>
                         <img src={logoE_N2} className='logo2' alt='logo'/>
                   </div>

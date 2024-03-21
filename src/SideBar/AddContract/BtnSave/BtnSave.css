@@ -1,0 +1,49 @@
+
+.enterNameContract{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.title-modal{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.natureContr{
+    border-radius: 8px;
+    box-shadow: -2px 0px 8px 1px #DDB660;
+    border: none;
+    padding: 7px 6px 7px 150px;
+    margin-right: 20px;
+}
+.name{
+    margin-top: 2px;
+    font-size: 1.2em;
+}
+.btnContainer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    margin: 40px 0px 20px 0px;
+
+
+}
+.btnSave{
+    margin-left: 20px;
+    background-color: #DDB660;
+    color: white;
+}
+.btnCancel{
+    color: #DDB660;
+
+}
+.btnCancel,.btnSave{
+padding: 5px 30px;
+
+
+border: none;
+box-shadow: -2px 0px 8px 1px #DDB660;
+border-radius: 8px;
+
+}
+
+
