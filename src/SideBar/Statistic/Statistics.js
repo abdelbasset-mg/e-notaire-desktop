@@ -4,12 +4,18 @@ import MonthsList from './elements-statistics/Months';
 import Chartday from './elements-statistics/Chartday'; 
 import DataChart from './elements-statistics/DataChart';
 import { useConstants } from './constantes/Constantes';
+import SideBar from '../../SideBar';
 function Statistics() {
     const DataPercentage1 = "63%";
     const DataPercentage2 = "37%";
 
     return (
         <>
+         <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+            <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
          
            <div className='title1'>
                  <div className='title-1'>احصائيات</div>
@@ -101,6 +107,8 @@ function Statistics() {
 
           </div>
             
+           </div>
+           </div>
            </div>
 
           

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import './Setting.css'
-import eye from '../../icons/eye.svg'
-import eyeclose from '../../icons/eyeclose.svg'
+import './Setting.css';
+import eye from '../../icons/eye.svg';
+import eyeclose from '../../icons/eyeclose.svg';
+import SideBar from '../../SideBar';
 
 
 
@@ -10,6 +11,12 @@ function Setting(){
     const [password,setPassword]=useState("");
     const [visible,setVisible]=useState(true);
     return(
+        <>
+         <div className='flex flex-row-reverse h-[100%]'>
+        <div className='w-[13%]'>
+            <SideBar />
+        </div>
+        <div className='w-[87%] flex flex-col'>
         <div className="container-setting" dir="rtl">
              <div className='title-setting '>
                 <div className='title-1-setting'> الاعدادات</div>
@@ -116,34 +123,12 @@ function Setting(){
                             <button className='save bg-[#284A68] text-white'> تغيير كلمة المرور</button>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
             </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
         </div>
+        </div>
+        </div>
+        </>
     )
 
 }
