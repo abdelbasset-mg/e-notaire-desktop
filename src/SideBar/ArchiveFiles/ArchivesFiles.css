@@ -62,7 +62,6 @@
     margin-right: 4px;
 }
 .t1-2-file{
-    margin-right: -3.5vw;
     margin-left: 5vw;
 }
 .triangle-file{
@@ -92,7 +91,8 @@
     margin-right: 2vw;
 }
 .natureOfContract-1{
-    margin-right: 5vw;
+    text-align: start;
+    margin-left: 3vw;
     width: 14vw;
     overflow-x: hidden;
     overflow-y: hidden;

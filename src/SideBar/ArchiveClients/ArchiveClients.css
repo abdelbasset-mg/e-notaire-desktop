@@ -61,7 +61,6 @@
     margin-right: 4px;
 }
 .t1-2-clt{
-    margin-right: -2vw;
     margin-left: 2.5vw;
 }
 .triangle-clt{
@@ -82,15 +81,23 @@
 }
 .div1{
     display: flex;
+    justify-content: space-between;
+    width: 25vw;
 }
 .div2{
     display: flex;
+   
 }
 .numberOfClient{
-    margin-right: 2vw;
+    /* margin-right: 2vw; */
+    width: 5vw;
+    margin-right: 1vw;
 }
 .fullName{
-    margin-right: 6vw;
+    /* margin-right: 6vw; */
+    width: 15vw;
+    text-align: start;
+    margin-right: 7vw;
 }
 .numberOfContracts{
     margin-left: 3vw;
@@ -175,8 +182,12 @@
 .info-client{
     height: max-content;
 }
-
-
+.sexe{
+    margin-left: 3px;
+}
+.birth{
+    margin-left: 2px;
+}
 }
 
 

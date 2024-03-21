@@ -21,49 +21,35 @@ const SideBar = () => {
     return(
     <>
                  <div  className='SideBar w-[100%]'>
+                 <div className='logoE-N2 w-[100% flex justify-center text-center]'>
+                        <img src={logoE_N2} className='logo2 w-[40%] pt-[6%]' alt='logo'/>
+                  </div>
             
-            <div className='logoE-N'>
-            <img src={logoE_N} className='logo' alt='logo'/>
+                 <div className='logoE-N w-[100%] flex justify-center text-center'>
+                    <div className='w-[80%] logoe'><img src={logoE_N} className='logo' alt='logo'/></div>
+                  </div>
+
+                  <div className='links'>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' ><div className='control'>لوحة التحكم</div><div className='icon-1 '><img src={logoC} className='icon i1 '/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'><div className='control'> احصائيات</div><div className='icon-1  '><img src={logoS} className='icon i2'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'><div className='control'> تحرير عقد</div><div className='icon-1  '><img src={logoContr} className='icon i3'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'><div className='control'> نماذج العقود</div><div className='icon-1 '> <img src={logoModel} className='icon i4'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> <div className='control'> ارشيف الزبائن</div><div className='icon-1 '><img src={logoCli} className='icon i5'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'><div className='control'> ارشيف الملفات</div><div className='icon-1 '><img src={logoFile} className='icon i6'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'><div className='control'> اعدادات</div><div className='icon-1 '><img src={logoSett} className='icon i7'/></div></NavLink></div></div>
+                  </div>
+
+                  <div className='foot'>
+                        <div className='admin'>{user}</div>
+                        <div className='admin-name'> {user} مكتب الاستاذ </div>
+                        <Link to="/Login" className='exit'><button className='exit-Button'><img src={logoE} className='logoC'/></button></Link>
+                  </div>
             </div>
             
-            <div className='links'>
-                  <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' >لوحة التحكم</NavLink></div><div className='icon-1 '><img src={logoC} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> احصائيات</NavLink></div><div className='icon-1 '><img src={logoS} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'>تحرير عقد</NavLink></div><div className='icon-1 '><img src={logoContr} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'>نماذج العقود</NavLink></div><div className='icon-1 '> <img src={logoModel} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> أرشيف الزبائن</NavLink></div><div className='icon-1 '><img src={logoCli} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'>أرشيف الملفات</NavLink></div><div className='icon-1 '><img src={logoFile} className='icon'/></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'>اعدادات</NavLink></div><div className='icon-1 '><img src={logoSett} className='icon'/></div></div>
-            </div>
-            
-            <div className='foot'>
-                  <div className='admin'>{user}</div>
-                  <div className='admin-name'> {user} مكتب الاستاذ </div>
-                  <div className='exit'><Link to='/Login' className='exit-Button'><img src={logoE} className='logoC'/></Link></div>
-            </div>
-            </div>
             
             
             
-            
-            {/*  SIDBAR QUAND ON REDUIT L ECRAN */}
-            <div  className='SideBar-m w-[100%] mt-[-1cm] '>
-            <div className='logoE-N2'>
-                  <img src={logoE_N2} className='logo2 mt-[30%]' alt='logo'/>
-            </div>
-            <div className='links'>
-                  <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' ><div className='icon-1 '><img src={logoC} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'> <div className='icon-1 i1 '><img src={logoS} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'><div className='icon-1 '><img src={logoContr} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'><div className='icon-1 '> <img src={logoModel} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> <div className='icon-1 i1 '><img src={logoCli} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'><div className='icon-1 '><img src={logoFile} className='icon'/></div></NavLink></div></div>
-                  <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'><div className='icon-1 i1 i2 '><img src={logoSett} className='icon'/></div></NavLink></div></div>
-            </div>
-            <div className='foot'>
-                <div className='exit'><Link to="/Login" className='exit-Button'><img src={logoE} className='logoC'/></Link></div>
-            </div>
-            </div>
+       
     </>
     )
 

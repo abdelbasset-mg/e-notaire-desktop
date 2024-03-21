@@ -22,10 +22,12 @@ html{
   justify-content: right;
   height: 100%;
   
+  
 }
-.SideBar-m{
+.logoE-N2{
   display: none;
 }
+
 
 /*-----sidebar css -----*/
 .SideBar{
@@ -38,13 +40,13 @@ html{
   text-align: center;
   line-height: 70px;
   user-select: none;
-  padding-top: 30px;
-  padding-left: 10%;
+  padding-top: 8%;
+ 
+
 }
 .navlink{
   color: #284A68;
   font-weight: bold;
-  
 }
 .link{
   display: flex;
@@ -56,9 +58,9 @@ html{
 
 }
 .links{
-  margin-top: 20%;
+  margin-top: 10%;
   background-color: white;
-  margin-right: 8%;
+  margin-right: 5%;
 }
 
 .l-ink{
@@ -66,31 +68,17 @@ html{
 
 }
 .icon{
-  width: 25px;
+  width: 20px;
   margin-top: 15px;
 }
 
 .icon-1{
   padding-left: 10px;
 }
-a.active  {
+a.active{
   color: #DDB660;
   border-left: 10px solid #DDB660;
-
-  
-  
-
 }
-.height{
-  height: 100%;
-  width: 10px;
-  border-radius: 5px;
-  background: #DDB660;
-  display: none;
-
-}
-
-
 
 a{
   padding-left:0px;
@@ -99,7 +87,7 @@ a{
   justify-content: end;
 }
 .foot{
-  margin-top: 90%;
+  padding-top: 100px;
 
   display: grid;
   grid-template-areas:
@@ -122,80 +110,105 @@ a{
 }
 .exit{
   grid-area: exit;
-  padding-left: 50px;
+  padding-left: 40px;
 }
 .exit-Button{
   border: none;
   background-color: white;
 }
-@media screen and (max-width:950px){
+.logo2{
+  display: none;
+}
+.i3,.i4,.i6{
+  width: 23px;
+}
+.i2{
+  margin-right: 2px;
+  width: 19px;
+}
+.i1{
+  margin-right: 2px;
+  width: 21px;
+}
+.i5{
+  width: 19px;
+  margin-right:1.5px ;
+}
+.i7{
+  margin-right: 1px;
+}
+@media screen and (max-width:1130px){
+  .SideBar{
+    height: max-content;
+  }
+ 
+  .control{
+    display: none;
+  }
+  .admin,.admin-name{
+    display: none;
+  }
+  .logoe{
+    display: none;
+  }
+  .logo2{
+    display: block;
+    
+  }
   
   .foot{
     padding-top: 10vh;
-    padding-bottom: 80%;
+    padding-bottom: 52vh;
 
   }
-  .exit{
-    padding-left: 5vw;
+  
+  .links{
+    padding-top: 30%;
+  
+ 
   }
-  .SideBar{
-    display: none;
+  
+  a.active{
+    border-left: 6px solid #DDB660;
   }
-  .SideBar-m{
-    display: block;
-
-    background-color: #ffffff;
-    box-shadow: -3px 0px 10px 1px #DDB660;
-
-  }
+  
   .icon{
     width: 100%;
+    margin-top: 0;
+    padding: 1vh;
+
+   
     
   }
   .icon-1{
     margin-right: 25%;
+   
   }
-  a.active{
-    border-left: 5px solid #DDB660;
-  }
-  .links{
-    display: flex;
-    flex-direction: column;
-    margin-top: 50%;
-  }
-  .link{
-    margin: 10px 0px;
-  }
-  
-  .i1{
-    margin-right: 26%;
-  }
-  .i2{
-    margin-right: 28%;
-  }
-  .logo2{
-    width: 55%;
-    
-  }
-  .logoE-N2{
-    display: flex;
-    justify-content: center;
-    margin-top: 40%;
-  }
-  .exit{
-    padding-left: 60%;
-    padding-bottom: 200%;
-  }
-  
-}
-@media screen and (max-height:650px){
-  .SideBar{
-    height:max-content;
-    
-  }
-  .SideBar-m{
-    height: max-content;
-  }
+ .link{
+  margin-bottom: 2vh;
+ }
+ .i2{
+  width: 96%;
+  margin-left: 1px;
+ }
+ .i3{
+  margin-left: 2px;
+ }
+ .i4{
+  margin-left: 2px;
+ }
+ .i6{
+  margin-left: 2px;
+ }
+ .i7{
+  margin-right: 2px;
+ }
+ .exit{
+  padding-left: 5px;
+ }
+ 
 
-}
+  
+} 
+
 

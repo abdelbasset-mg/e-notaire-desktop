@@ -63,7 +63,7 @@ export const  Models = () => {
                 <div className='titles' dir='ltr'>
                     <div className='t1'><div className='t2 t2-1'>رقم العقد</div><div className='triangle'><img src={triangle}></img></div></div>
                     <div className='t1 t1-2'><div className='t2 t2-2'>طبيعة العقد</div><div className='triangle'><img src={triangle}></img></div></div>
-                    <div className='t1'><div className='t2 t2-3'>عدد النماذج</div><div className='triangle'><img src={triangle}></img></div></div>
+                    <div className='t1 t1-3'><div className='t2 t2-3'>عدد النماذج</div><div className='triangle'><img src={triangle}></img></div></div>
                 </div>
                 <div className='scrollbar'>
                         {
