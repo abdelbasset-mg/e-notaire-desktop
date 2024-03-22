@@ -265,6 +265,7 @@
     .second{
         display: flex;
         flex-direction: column-reverse;
+        margin-left: 4%;
     }
     .info{
         width: 95%;
@@ -281,6 +282,8 @@
     }
     .graph{
         width: 95%;
+        margin-left: 4%;
+
     }
     .mostRequ-newContr{
     display: flex;
