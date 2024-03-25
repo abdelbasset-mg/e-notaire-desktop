@@ -58,7 +58,7 @@ html{
 
 }
 .links{
-  margin-top: 10%;
+  margin-top: 20%;
   background-color: white;
   margin-right: 5%;
 }
@@ -87,8 +87,7 @@ a{
   justify-content: end;
 }
 .foot{
-  padding-top: 100px;
-
+  padding-top: 90%;
   display: grid;
   grid-template-areas:
   "exit admin"
