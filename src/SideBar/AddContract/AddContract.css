@@ -54,20 +54,10 @@
     color: rgb(37, 36, 36);
     font-size: 0.9em;
     display: flex;
-    margin-right: 4%;
+    
 }
-.t2{
-    margin-right: 5px;
-}
-.t2-1{
-    margin-left: 6vw;
-}
-.t2-2{
-    margin-left:10% ;
-}
-.t1-2{
-    margin-right: 10vw;
-}
+
+
 .button1{
     padding: 1.2vh 5vw;
     margin-left:8vw ;

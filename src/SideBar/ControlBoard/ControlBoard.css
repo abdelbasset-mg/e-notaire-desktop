@@ -190,7 +190,7 @@
 .mostRequ{
     box-shadow: -2px 0px 8px 1px #DDB660;
     border-radius: 8px;
-    height: 70%;
+    height: max-content;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -207,13 +207,17 @@
     font-size: 16pt;
 }
 
-.ordre{
+/* .ordre{
     border: 1px solid black;
     padding: 1% 1%;
     border-radius:5px ;
     background-color: #284A68;
     color: white;
     font-size: 0.6em;
+} */
+.contract-c{
+    font-size: 0.7em;
+    margin-right: 2%;
 }
 .barre2{
    display:flex;

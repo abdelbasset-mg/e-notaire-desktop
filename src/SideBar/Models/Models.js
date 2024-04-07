@@ -53,17 +53,19 @@ export const  Models = () => {
                     />
                 </div>
                 <div className='addcontr'>
-                    <button className=' button1' onClick={()=> setOpenModel(true)}>اضافة عقد جديد</button>
+                    <button className=' button1' onClick={()=> setOpenModel(true)}>اضافة طبيعة عقد</button>
                     
                     <Add open={openModel} onClose={()=> setOpenModel(false)}  />
                 </div>
                
             </div>
             <div className='contractContainer '>
+            <div className='flex justify-center text-center w-[100%]'>
                 <div className='titles' dir='ltr'>
                     <div className='t1'><div className='t2 t2-1'>رقم العقد</div><div className='triangle'><img src={triangle}></img></div></div>
-                    <div className='t1 t1-2'><div className='t2 t2-2'>طبيعة العقد</div><div className='triangle'><img src={triangle}></img></div></div>
-                    <div className='t1 t1-3'><div className='t2 t2-3'>عدد النماذج</div><div className='triangle'><img src={triangle}></img></div></div>
+                    <div className='t1 ml-[9%]'><div className='t2 t2-2'>طبيعة العقد</div><div className='triangle'><img src={triangle}></img></div></div>
+                    <div className='t1 ml-[8%] '><div className='t2 t2-3'>عدد النماذج</div><div className='triangle'><img src={triangle}></img></div></div>
+                </div>
                 </div>
                 <div className='scrollbar'>
                         {

@@ -36,7 +36,7 @@
          flex-direction: row-reverse;
          margin-top: 3%;
          margin-right: 2%;
-         height: 50%;
+         height: 46%;
  
        
  }
@@ -48,6 +48,7 @@
     flex-direction: column;
     margin-left:2%;
     width: 38%;
+    height: 100%;
    
  }
  .title-circle-relatif{
@@ -67,7 +68,6 @@
     align-items: center;
     width: 200;
     margin: 2% 0% 0 0% ;
-    margin-bottom: -0.2cm;
  
  }
  .statstic-container{
@@ -227,18 +227,21 @@
  
  
  
- .table {
+ .table{
    display: flex;
    flex-direction: column;
    direction: rtl;
    text-align: center;
    margin-top: 2%;
+   height: 100%;
+  
  }
  
  .ligne1, .ligne2, .ligne3, .ligne4 {
    display: flex;
    justify-content: space-between;
    align-items: center;
+  height: 22%;
  
  
   
@@ -276,7 +279,7 @@
  .li2{
   
  
-   width: 20%;
+   width: 60%;
  
  }
  .titlec1{
@@ -307,8 +310,8 @@
    font-family: 'changa';
   
  }
- .lit2,.lit3,.lit4{
-   font-size: 14pt;
+ .lit2{
+   font-weight: bold;
    margin-right: 25px;
    width: 10%;
    margin-left: 40px;
@@ -337,15 +340,8 @@
  }
  
  
- .Contracts-stat{
-   margin: 3% 2%;
-   display: flex;
-   flex-direction: column;
- }
- .contrat-stat{
-    font-size: 16pt;
-    padding: 0 10px;
- }
+
+
  
  
  .num{

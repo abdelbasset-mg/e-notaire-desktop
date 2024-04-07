@@ -50,10 +50,12 @@ function ChooseModel() {
                 </div>
             </div>
             <div className='contractContainer'>
+            <div className='flex justify-center text-center w-[100%]'>
                 <div className='titles'>
                     <div className='t1'><div className='t2 t2-1'>رقم النموذج</div><div className='triangle'><img src={triangle} alt="triangle" /></div></div>
-                    <div className='t1 t1-2'><div className='t2 t2-2'>اسم النموذج</div><div className='triangle'><img src={triangle} alt="triangle" /></div></div>
-                    <div className='t1'><div className='t2 t2-3'>عدد البنود </div><div className='triangle'><img src={triangle} alt="triangle" /></div></div>
+                    <div className='t1 ml-[9%]'><div className='t2 t2-2'>اسم النموذج</div><div className='triangle'><img src={triangle} alt="triangle" /></div></div>
+                    <div className='t1 ml-[8%]'><div className='t2 t2-3'>عدد البنود </div><div className='triangle'><img src={triangle} alt="triangle" /></div></div>
+                </div>
                 </div>
            
             <div className='scrollbar' dir='rtl'>

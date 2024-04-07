@@ -71,7 +71,6 @@
 }
 .line-client{
     display: flex;
-    justify-content: space-between;
     margin: 2% 0;
     border: none;
     box-shadow: -2px 0px 8px 1px #DDB660;
@@ -86,6 +85,12 @@
 }
 .div2{
     display: flex;
+    width: 25vw;
+    justify-content: space-between;
+
+
+
+    
    
 }
 .numberOfClient{
@@ -99,7 +104,7 @@
     text-align: start;
     margin-right: 7vw;
 }
-.numberOfContracts{
+/* .numberOfContracts{
     margin-left: 3vw;
 }
 .sexe{
@@ -107,7 +112,7 @@
 }
 .birth{
     margin-left: 6vw;
-}
+} */
 .cln2{
     display: flex;
     justify-content: center;

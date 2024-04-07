@@ -51,8 +51,8 @@ export default function PieChart() {
   }, []);
 
   return (
-    <div>
-      <canvas ref={chartRef} style={{ width: '160px', height: '210px' }} />
+    <div className=' h-[150px] mb-[5%] mt-[3%]'>
+      <canvas ref={chartRef} />
     </div>
   );
 }
