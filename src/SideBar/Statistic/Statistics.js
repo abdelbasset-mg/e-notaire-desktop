@@ -5,14 +5,17 @@ import Chartday from './elements-statistics/Chartday';
 import DataChart from './elements-statistics/DataChart';
 import { useConstants } from './constantes/Constantes';
 import SideBar from '../../SideBar';
+import o1 from '../../icons/1.svg';
+import o2 from '../../icons/2.svg';
+import o3 from '../../icons/3.svg';
 function Statistics() {
-    const DataPercentage1 = "63%";
-    const DataPercentage2 = "37%";
+    const { numberOfAct1,numberOfAct2,numberOfAct3,DataPercentage1,DataPercentage2,file } = useConstants();
+
 
     return (
         <>
          <div className='flex flex-row-reverse h-[100%]'>
-        <div className='w-[13%]'>
+        <div className='w-[13%] h-[100%]'>
             <SideBar />
         </div>
         <div className='w-[87%] flex flex-col'>
@@ -53,59 +56,68 @@ function Statistics() {
             <div className='Foot2'>
                  <div className='last-folder'>
                     <div className='last-folder-title' >اخر الملفات</div>
-                 
+                    
                         <div className='table'>
                            <div className='ligne1'>
                                <div className='titlec1'>رقم الملف</div>
                                <div className='titlec2'>نوع العقد</div>
                                <div className='titlec3'>حالة الملف</div>
                                </div>
+                               { file.map((data,index)=>{
+                        return (
                            <div className='ligne2'>
-                           <div className='li1'>1000</div>
-                           <div className='li2'>عقد بيع و شراء العقارات</div>
-                           <div className='lit2 centered-element'>مستحضر </div>
+                           <div className='li1'>{data.fileNumber}</div>
+                           <div className='li2'>{data.act}</div>
+                           <div className='lit2 centered-element'>{data.status} </div>
                            </div>
+                                  )
+                         })
+                   }
    
-                           <div className='ligne3'>
-                           <div className='li1'>1000</div>
-                           <div className='li2'>عقد بيع و شراء العقارات</div>
-                           <div className='lit3 centered-element'>مستحضر </div>
-                            
-                           </div>
-                           <div className='ligne4'>
-                           <div className='li1'>1000</div>
-                           <div className='li2'>عقد بيع و شراء العقارات</div>
-                           <div className='lit4 centered-element'>مستحضر </div>
-                            
-                           </div>           
+                        
+                                  
                   
                              </div>
+
                            </div>
+                     
 
             <div className='most-contrat'>
            
                 <div className='title-most-contart'>العقود الاكثر طلبا</div>
-               <div className='Contracts-stat'>
-               
-                   <div className='contrat-stat'>
-                       <div className='num'>1</div>
-                       <div className='contrat'></div>
-                    </div>                     <div className='barre'><div className='bar'></div></div>
-   
-                   <div className='contrat-stat'>
-                       <div className='num' >2</div>
-                        <div className='contart'></div>
-                    </div>
-                    <div className='barre'><div className='bar'></div></div>
-                   <div className='contrat-stat'>
-                      <div className='num'>3</div>
-                      <div className='contrat'></div>
+                <div className='Contracts'>
+                
+                <div className='contract'>
+                <div className='ordre mt-[2%]'><img src={o1}></img></div>
+                   <div className='flex flex-col w-[100%] text-right '>
+                    <div className='contract-c'>تنازل عن حصص في شركة</div>
+                    <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct1} عقد</div>
                    </div>
-               
-                    <div className='barre'><div className='bar'></div></div>
                 </div>
+                <div className='barre2'><div className='bardiv'></div></div>
 
-          </div>
+                <div className='contract'>
+                <div className='ordre mt-[2%]'><img src={o2}></img></div>
+                   <div className='flex flex-col w-[100%] text-right '>
+                    <div className='contract-c'> عقد بيع و شراء قطعة أرض</div>
+                    <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct2} عقد</div>
+                   </div>
+
+                </div>
+                <div className='barre2'><div className='bardiv'></div></div>
+                <div className='contract'>
+                <div className='ordre mt-[2%]'><img src={o3}></img></div>
+                   <div className='flex flex-col w-[100%] text-right '>
+                    <div className='contract-c'>كراء مسكن </div>
+                    <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct3} عقد</div>
+                   </div>
+
+                </div>
+            
+                <div className='barre2'><div className='bardiv'></div></div>
+            </div>
+
+        </div>
             
            </div>
            </div>

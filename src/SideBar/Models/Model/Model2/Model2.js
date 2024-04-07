@@ -113,8 +113,8 @@ function Model2() {
                                     <button className="btnSave2" onClick={() => handleSaveButtonClick(index)}>حفظ</button>
                                 ) : (
                                     <>   <div className='alternative2'>
-                                        <input className="checkbox-input" type="checkbox" />
-                                        <label className="button-alternative">الظهور في المستخرج</label>
+                                        <input className="checkbox-input focus:outline-none hover:outline-none" type="checkbox" />
+                                        <label className="button-alternative ">الظهور في المستخرج</label>
                                         <div className='buttonc' onClick={() => handleEditButtonClick(index)}> تعديل</div></div>
                                     </>
                                 )}

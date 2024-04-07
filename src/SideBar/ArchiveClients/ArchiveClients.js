@@ -52,12 +52,12 @@ function ArchiveClients(){
                                 onChange={e=>setSearch(e.target.value)}
                             />
                         </div>
-                        <div className='titles-clt'>
-                            <div className='t1-clt'><div className='t2-clt t2-1-clt'>رقم الزبون</div><div className='triangle-clt'><img src={triangle}></img></div></div>
-                            <div className='t1-clt t1-2-clt'><div className='t2-clt t2-name '>اسم و لقب الزبون </div><div className='triangle-clt'><img src={triangle}></img></div></div>
-                            <div className='t1-clt'><div className='t2-clt t2-3-clt'>تاريخ الميلاد</div><div className='triangle-clt'><img src={triangle}></img></div></div>
-                            <div className='t1-clt '><div className='t2-clt '> جنس الزبون</div><div className='triangle-clt'><img src={triangle}></img></div></div>
-                            <div className='t1-clt '><div className='t2-clt t2-2-clt'>عدد العقود</div><div className='triangle-clt'><img src={triangle}></img></div></div>
+                        <div className='flex mt-[5%] mr-[2%] '>
+                            <div className='t1-clt w-[20%] justify-end'><div className='t2-clt t2-1-clt'>رقم الزبون</div><div className='triangle-clt'><img src={triangle}></img></div></div>
+                            <div className='t1-clt w-[20%] justify-end'><div className='t2-clt t2-name '>اسم و لقب الزبون </div><div className='triangle-clt'><img src={triangle}></img></div></div>
+                            <div className='t1-clt w-[20%] justify-center'><div className='t2-clt '>تاريخ الميلاد</div><div className='triangle-clt'><img src={triangle}></img></div></div>
+                            <div className='t1-clt w-[20%] justify-center'><div className='t2-clt '> جنس الزبون</div><div className='triangle-clt'><img src={triangle}></img></div></div>
+                            <div className='t1-clt w-[20%] justify-center'><div className='t2-clt t2-2-clt'>عدد العقود</div><div className='triangle-clt'><img src={triangle}></img></div></div>
         
                         </div>
                         <div className="table-clt">
@@ -68,15 +68,22 @@ function ArchiveClients(){
                                             
                                             <div className='line-client hover:bg-[#FFF5DE]' onClick={()=>handleClick(inputTableClients, index)} key={index}  >
 
-                                               <div className="div1">
-                                                <div className='numberOfClient info2 '>{info.number}</div>
-                                                <div key={info.fullName} className='fullName info2  '>{info.fullName}</div>
+                                               <div className="w-[20%] flex justify-start mr-[3%] ">
+                                                   <div className=' info2  '>{info.number}</div>
+                                               </div>
+                                               <div className="w-[20%] flex justify-start">
+                                                   <div key={info.fullName} className='info2  '>{info.fullName}</div>
+                                               </div>
+                                                <div className="w-[20%] flex justify-center text-center">
+                                                   <div className='birth info2'>{info.dateBirth}</div>
                                                 </div>
-                                                <div className="div2">
-                                                <div className='birth info2'>{info.dateBirth}</div>
-                                                <div className='sexe info2'><div className="bg-[#284A68] text-white pr-3 pl-3 rounded-lg">{info.sexe}</div></div>
+                                                <div className="w-[20%] flex justify-center text-center ">
+                                                <div className='sexe info2 bg-[#284A68] text-white rounded-lg w-[45%]'><div >{info.sexe}</div></div>
+                                                </div>
+                                                <div className="w-[20%] flex justify-center text-center">
                                                 <div className='numberOfContracts info2'>{info.numberOfContracts}</div>
                                                 </div>
+                                              
                     
                                             </div>
         

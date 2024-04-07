@@ -14,9 +14,6 @@ export const useConstants = () => {
         {number: 1, natureOfModel: "نموذج صيف 1996", numberOfModel: 7},
         {number: 2, natureOfModel: "نموذج الموثق سعيد نواصرية", numberOfModel: 7},
         {number: 3, natureOfModel: "نموذج 1 بعد تعديل 2011", numberOfModel: 7},
-        {number: 4, natureOfModel: "نموذج صيف 1996", numberOfModel: 7},
-        {number: 5, natureOfModel: "نموذج صيف 1996", numberOfModel: 7},
-        {number: 6, natureOfModel: "نموذج صيف 1996", numberOfModel: 7},
     ]);
     
    

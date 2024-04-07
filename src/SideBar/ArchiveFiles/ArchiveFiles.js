@@ -54,12 +54,12 @@ function ArchiveFiles(){
                                 onChange={e=>setSearch(e.target.value)}
                             />
                         </div>
-                        <div className='titles-file'>
-                            <div className='t1-file'><div className='t2-file t2-1-file'>رقم الملف</div><div className='triangle-file'><img src={triangle}></img></div></div>
-                            <div className='t1-file t1-2-file'><div className='t2-file t2-name '>طبيعة الملف </div><div className='triangle-file'><img src={triangle}></img></div></div>
-                            <div className='t1-file'><div className='t2-file t2-3-file'> اسم النموذج</div><div className='triangle-file'><img src={triangle}></img></div></div>
-                            <div className='t1-file '><div className='t2-file '> تاريخ التحرير</div><div className='triangle-file'><img src={triangle}></img></div></div>
-                            <div className='t1-file '><div className='t2-file t2-2-file'>عدد الأطراف</div><div className='triangle-file'><img src={triangle}></img></div></div>
+                        <div className='flex mt-[5%] mr-[2%]'>
+                            <div className='t1-file w-[20%] justify-end'><div className='t2-file '>رقم الملف</div><div className='triangle-file'><img src={triangle}></img></div></div>
+                            <div className='t1-file w-[25%] justify-end'><div className='t2-file t2-name '>طبيعة الملف </div><div className='triangle-file'><img src={triangle}></img></div></div>
+                            <div className='t1-file w-[20%] justify-start'><div className='t2-file t2-3-file'> اسم النموذج</div><div className='triangle-file'><img src={triangle}></img></div></div>
+                            <div className='t1-file w-[20%]'><div className='t2-file '> تاريخ التحرير</div><div className='triangle-file'><img src={triangle}></img></div></div>
+                            <div className='t1-file w-[15%]'><div className='t2-file t2-2-file'>عدد الأطراف</div><div className='triangle-file'><img src={triangle}></img></div></div>
         
                         </div>
                         <div className="table-file">
@@ -70,14 +70,20 @@ function ArchiveFiles(){
                                             
                                             <div className='line-file hover:bg-[#FFF5DE]' onClick={()=>handleClick(inputTableFiles, index)} key={index}  >
 
-                                               <div className="div1">
+                                               <div className="w-[20%] flex justify-start">
                                                 <div className='numberOfFile info2 numberOfFile'>{info.number}</div>
+                                                </div>
+                                                <div className="w-[30%] flex justify-start">
                                                 <div key={info.natureOfContract} className=' info2 natureOfContract-1 '>{info.natureOfContract}</div>
                                                 </div>
-                                                <div className="div2">
-                                                <div className=' info2 model'>{info.model}</div>
-                                                <div className=' info2 date'>{info.date}</div>
-                                                <div className=' info2 numberOfPerson'>{info.numberOfPerson}</div>
+                                                <div className="w-[20%] flex justify-center">
+                                                <div className=' info2 '>{info.model}</div>
+                                                </div>
+                                                <div className="w-[20%] flex justify-center">
+                                                <div className=' info2'>{info.date}</div>
+                                                </div>
+                                                <div className="w-[10%] flex justify-center">
+                                                <div className=' info2'>{info.numberOfPerson}</div>
                                                 </div>
                     
                                             </div>

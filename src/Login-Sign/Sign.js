@@ -26,7 +26,7 @@ function Sign (){
         <div className="w-[50%] h-[100%] formulaire ">
             <form className=" flex flex-col form">
                 <div className="flex justify-end w-[70%] text-[20pt] font-bold"><div>انشاء حساب</div></div>
-                <div className="flex flex-col inputs w-[70%] mt-[15%]">
+                <div className="flex flex-col inputs w-[80%] mt-[15%]">
                     <div className="flex flex-row-reverse justify-between w-[100%] log-in ">
                     <label className="mt-[1%]" for="user">اسم المستخدم</label>
                     <input dir="rtl" className="input input-user focus:outline-none" type="text" name="user" id="user" placeholder="اسم المستخدم"></input>
@@ -49,7 +49,7 @@ function Sign (){
                     </div>
                     </div>
                     <div className="flex flex-row-reverse justify-between w-[100%] log-in">
-                    <label className="mt-[1%]" >تأكيد كلمة المرور</label>
+                    <label className="mt-[1%] " >تأكيد كلمة المرور</label>
                     <div className="seepass flex flex-row-reverse  justify-between">
                      <input     dir="rtl"
                                 className='input focus:outline-none' 

@@ -9,11 +9,12 @@
    margin-right: 10px;
    margin-left: 80px;
    color: #030229;
+   
 }
 
 .C1{
     margin-right: 15px;
-    margin-left: 15px;
+    margin-left: 15px; 
     margin-bottom: 10px;
     padding: 8px 35px;
     border-radius: 8px;
@@ -25,11 +26,11 @@
  
    
 }
-.C1:focus {
+ .C1:focus {
     background-color: #DDB660;
-    color: white; /* Couleur du texte */
+    color: white; /* Couleur du texte 
     /* Ajoutez d'autres styles selon vos besoins */
-}
+} 
 
 .btnContainer3{
     display: flex;

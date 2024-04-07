@@ -14,10 +14,12 @@ import logoE_N2 from './icons/logo2.svg'
 import React from 'react';
 import { useState } from 'react';
 import Login from './Login-Sign/Login';
+import { useConstants } from './SideBar/ControlBoard/Constants/Constants';
 
 
 const SideBar = () => {
-    const [user,setUser]=useState("####")
+      const {user,admin} = useConstants();
+    
     return(
     <>
                  <div  className='SideBar w-[100%]'>
@@ -30,18 +32,18 @@ const SideBar = () => {
                   </div>
 
                   <div className='links'>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' ><div className='control'>لوحة التحكم</div><div className='icon-1 '><img src={logoC} className='icon i1 '/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'><div className='control'> احصائيات</div><div className='icon-1  '><img src={logoS} className='icon i2'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/' ><div className='control'>لوحة التحكم</div><div className='icon-1 pl-[5%] '><img src={logoC} className='icon i1 '/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/احصائيات'><div className='control'> الاحصائيات</div><div className='icon-1  '><img src={logoS} className='icon i2'/></div></NavLink></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/تحرير عقد'><div className='control'> تحرير عقد</div><div className='icon-1  '><img src={logoContr} className='icon i3'/></div></NavLink></div></div>
                         <div className='link '><div className='l-ink'><NavLink className='navlink' to='/نماذج العقود'><div className='control'> نماذج العقود</div><div className='icon-1 '> <img src={logoModel} className='icon i4'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> <div className='control'> ارشيف الزبائن</div><div className='icon-1 '><img src={logoCli} className='icon i5'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'><div className='control'> ارشيف الملفات</div><div className='icon-1 '><img src={logoFile} className='icon i6'/></div></NavLink></div></div>
-                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'><div className='control'> اعدادات</div><div className='icon-1 '><img src={logoSett} className='icon i7'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className="navlink" to='/ارشيف الزبائن'> <div className='control'> أرشيف الزبائن</div><div className='icon-1 '><img src={logoCli} className='icon i5'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/ارشيف الملفات'><div className='control'> أرشيف الملفات</div><div className='icon-1 pl-[4%] '><img src={logoFile} className='icon i6'/></div></NavLink></div></div>
+                        <div className='link '><div className='l-ink'><NavLink className='navlink' to='/اعدادات'><div className='control'> الإعدادات</div><div className='icon-1 '><img src={logoSett} className='icon i7'/></div></NavLink></div></div>
                   </div>
 
                   <div className='foot'>
-                        <div className='admin'>{user}</div>
-                        <div className='admin-name'> {user} مكتب الاستاذ </div>
+                        <div className='admin'>{admin}</div>
+                        <div className='admin-name'>  مكتب الاستاذ {user}</div>
                         <Link to="/Login" className='exit'><button className='exit-Button'><img src={logoE} className='logoC'/></button></Link>
                   </div>
             </div>

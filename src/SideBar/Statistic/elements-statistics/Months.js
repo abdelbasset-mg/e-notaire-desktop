@@ -8,7 +8,6 @@ function MonthsList({ monthsList }) {
     };
 
     const selectStyle = {
-        fontSize: '20px',
         display: 'flex',
         alignItems: 'center',    
         marginTop: '10px',
