@@ -1,0 +1,19 @@
+{
+  "client": [
+    {
+      "id": "9usmwal7t",
+      "fullName": "ssss Doe",
+      "dateOfBirth": "1990-01-01",
+      "placeOfBirth": "City",
+      "gender": "Male",
+      "bloodType": "O+",
+      "IDofIdentityCart": "123456789",
+      "address": "123 Main St, City",
+      "nameF": "Father",
+      "nameM": "Mother",
+      "lastNameM": "Mother's Last Name",
+      "phoneNumber": "1234567890",
+      "numberContrat": "123ABC"
+    }
+  ]
+}
