@@ -9,6 +9,8 @@ import rep from '../../../../icons/rep.svg';
 import Add2 from './Add2'; 
 import SideBar from '../../../../SideBar';
 import './Model2.css';
+import { useConstants_1 } from './Constants/Constants';
+
 
 function Model2() {
     const { model, Result } = useParams();
@@ -17,9 +19,30 @@ function Model2() {
     const [showSaveButtons, setShowSaveButtons] = useState([]);
     const [editingItemIndex, setEditingItemIndex] = useState(null);
     const [isEditing, setIsEditing] = useState(false); 
+    const {inputTermText,inputTermTitle,setInputTermText,setInputTermTitle}= useConstants_1();
+
     useEffect(() => {
         handleAddNewItem();
     }, []); 
+    //---------------------------//
+    //put term title in a variable
+    const handleChangeTermTitle = (event) => {
+        setInputTermTitle(event.target.value);
+        console.log(inputTermTitle);
+    }
+
+    //put term text in a var
+    const handleChangeTermText = (event) => {
+        setInputTermText(event.target.value);
+        console.log(inputTermText);
+
+
+    }
+
+
+
+
+    //-----------------------------//
 
     const handleNewItemTitleChange = (event, index) => {
         const updatedItems = [...newItems];
@@ -84,7 +107,7 @@ function Model2() {
                                     type="text"
                                     placeholder="عنوان البند"
                                     value={item.title1}
-                                    onChange={(event) => handleNewItemTitleChange(event, index)}
+                                    onChange={(event) => {handleNewItemTitleChange(event, index);handleChangeTermTitle(event)}}
                                     disabled={!showSaveButtons[index] && !isEditing}
                                 />
                             </div>
@@ -104,7 +127,7 @@ function Model2() {
                                     type="text"
                                     placeholder='محتوى البند'
                                     value={item.title2}
-                                    onChange={(event) => handleNewItemContentChange(event, index)}
+                                    onChange={(event) => {handleNewItemContentChange(event, index);handleChangeTermText(event)}}
                                     disabled={!showSaveButtons[index] && !isEditing}
                                 />
                             </div>
