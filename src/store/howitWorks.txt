@@ -1,0 +1,6 @@
+create a file at the reducerces folder for each route ( make sure to import it in the store.js )
+continue working in each reducer with the same structre of contract.reducer.js 
+each function diriha f creatAsyncThunk diri fiha axios request (diriha f try catch)
+at the end diri slice (createSlice) fiha initialeState (fih variables li rah ysralhm update fl ui "most of them states") then diri builder li fih l cases 
+
+then f pages diri call ll function b useDispatch wl varibales b useSelector (chofi f ChooseModal.js)

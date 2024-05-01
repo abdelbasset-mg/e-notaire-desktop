@@ -1,4 +1,7 @@
 {
-    "stats": [
-    ]
-  }
+  "stats": [
+    {
+      "type": "numberContracts"
+    }
+  ]
+}
