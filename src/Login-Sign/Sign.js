@@ -1,16 +1,20 @@
 import axios from 'axios';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,Navigate,useNavigate } from "react-router-dom";
 import eye from '../icons/eye.svg';
 import eyeclose from '../icons/eyeclose.svg';
 import "./Sign.css";
 import logoE_N from './icons/logoE-N.svg';
+import toast from "react-hot-toast";
+
 
 function Sign (){
     const [visible,setVisible]=useState(false);
     const [userName, setUserName]=useState("");
     const [password, setPassword]=useState("");
     const [confirmPassword, setConfirmPassword]=useState("");
+
+    const history = useNavigate();
 
 
     const changeUsername = (event) => {
@@ -21,28 +25,54 @@ function Sign (){
         setPassword(event.target.value)
     }
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
+        // console.log(userName,password,confirmPassword)
+        console.log("Password state before validation:", password);
+        console.log("Password length:", password.length);
         event.preventDefault()
-        if (password !== confirmPassword) {
-            alert("Password and confirm password do not match!");
+
+        if (password===""){
+            toast.error("لم يتم ادخال كلمة المرور")
             return;
         }
+        if (confirmPassword===""){
+            toast.error("لم يتم تأكيد كلمة المرور")
+            return;
+        }
+        if (password !== confirmPassword) {
+            toast.error("خطأ في كلمة المرور")
+            return;
+        }
+        if (userName===""){
+            toast.error("لم يتم ادخال اسم المستخدم")
+            return;
+        }
+        if (password.length<8){
+            toast.error("الرجاء ادخال كلمة مرور تحتوي على الاقل على 8 احرف او ارقام")
+            return;
+        }
+    
 
         const registered = {
             username: userName,
             password: password
         }
+        try {
+            const response = await axios.post("http://localhost:8000/register", {
+                username: userName,
+                password: password
+            });
+            setUserName("");
+            setPassword("");
+            toast.success("تم انشاء حسابك")
+            
+            history("/");
+            
+        } catch (error) {
+            console.error("Registration failed:", error);
+        }
+        
 
-        axios.post('http://localhost:5000/app/signup', registered)
-        .then(response => {
-            console.log(response.data);
-            alert("Your account has been created successfully");
-            setUserName("")
-            setPassword("")
-        })
-        .catch(error => {
-            console.error(error);
-        });
     
       
     }
@@ -128,7 +158,7 @@ function Sign (){
                     <button type='submit' className="btnLogin">انشاء حساب</button>
                     </div>
                     <div>
-                    <div dir="rtl" className="w-[84%] mt-2 flex flex-row"> تملك حساب ؟ <div><Link to="/Login" className="text-[#DDB660] mr-2">تسجيل دخول</Link></div></div>
+                    <div dir="rtl" className="w-[84%] mt-2 flex flex-row"> تملك حساب ؟ <div><Link to="/" className="text-[#DDB660] mr-2">تسجيل دخول</Link></div></div>
                     </div>
                 </div>
             </form>

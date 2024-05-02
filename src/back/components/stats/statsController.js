@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const clientDataPath = path.join(__dirname, 'clientData.json');
-const contractDataPath = path.join(__dirname, '../contract/contractData.json');
-const statsFilePath = path.join(__dirname, 'statsData.json');
+const clientDataPath = path.join(__dirname, "../client/clientData.json");
+const contractDataPath = path.join(__dirname, "../contract/contractData.json");
+const statsFilePath = path.join(__dirname, "statsData.json");
 
 // Function to read data from a file
 function readData(filePath) {
@@ -33,9 +33,7 @@ const countClients = () => {
 
 const updateStats = () => {
   const numberOfClients = countClients();
-  const stats = [
-    { type: "numberClients", value: numberOfClients }
-  ];
+  const stats = [{ type: "numberClients", value: numberOfClients }];
   writeData(statsFilePath, { stats });
 };
 
@@ -47,11 +45,13 @@ function countContracts(req, res) {
   const statsData = readData(statsFilePath);
   statsData.stats = statsData.stats || [];
 
-  const contractIndex = statsData.stats.findIndex(stat => stat.type === 'numberContracts');
+  const contractIndex = statsData.stats.findIndex(
+    (stat) => stat.type === "numberContracts"
+  );
   if (contractIndex !== -1) {
     statsData.stats[contractIndex].value = numberOfContracts;
   } else {
-    statsData.stats.push({ type: 'numberContracts', value: numberOfContracts });
+    statsData.stats.push({ type: "numberContracts", value: numberOfContracts });
   }
 
   writeData(statsFilePath, statsData);

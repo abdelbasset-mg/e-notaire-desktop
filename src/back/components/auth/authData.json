@@ -1,8 +1,16 @@
 {
-    "users": [
+  "users": [
     {
-        "username": "basset",
-        "password": "$2a$08$W.qHEMAOkKjWJssi9vkOFuFjtX.156enJhvzaCPYxpDZV9Cod7HJ2"
+      "username": "basset",
+      "password": "$2a$08$W.qHEMAOkKjWJssi9vkOFuFjtX.156enJhvzaCPYxpDZV9Cod7HJ2"
+    },
+    {
+      "username": "ميليسا",
+      "password": "$2a$08$7K.upgCSA3vW3k/XMKyNLe91wU5tNgcEDJtkTJF5FphjgNin8Oyx6"
+    },
+    {
+      "username": "انو",
+      "password": "$2a$08$hDD8m9SDBuR3LbjLHRhUluJ.q7mL3iOLH0mrrXhPS3moF0Om21t5a"
     }
-    ]
+  ]
 }
