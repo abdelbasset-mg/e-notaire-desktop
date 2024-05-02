@@ -17,9 +17,9 @@ function writeData(data) {
 
 // Function to create a new contract
 function createContract(req, res) {
-  const { sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms } = req.body;
+  const { sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms , price } = req.body;
   // Validate required fields
-  if (!sellerName || !buyerName || !idSeller || !idBuyer || !dateBirthSeller || !dateBirthBuyer || !numberOfRooms) {
+  if (!sellerName || !buyerName || !idSeller || !idBuyer || !dateBirthSeller || !dateBirthBuyer || !numberOfRooms || !price ) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -38,7 +38,7 @@ function createContract(req, res) {
   const currentDate = new Date(); // Get current date and time
   const formattedDate = currentDate.toISOString(); // Convert to ISO string format
 
-  const newContract = { id: Math.random().toString(36).substr(2, 9), sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms,formattedDate };
+  const newContract = { id: Math.random().toString(36).substr(2, 9), sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms,formattedDate,price };
   data.contract.push(newContract);
   writeData(data);
 

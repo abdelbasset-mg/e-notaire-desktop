@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 
-const secretKey = '4444'; // Change this with a random secret key
+const secretKey = '4444';
 const dataFilePath = path.join(__dirname, 'authData.json');
 
 

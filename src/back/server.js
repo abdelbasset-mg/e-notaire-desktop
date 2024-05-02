@@ -1,16 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./components/auth/authController');
-const { createType } = require('./components/contractType/typeController');
 const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
 const { createContract, getContract, updateContract, deleteContract } = require('./components/contract/contractController');
 const { countClients, countContracts } = require('./components/stats/statsController');
+const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm} = require('./components/template/templateControler');
+const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder} = require('./components/template/natureControler');
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+
+
 
 // Registration route
 app.post('/register', (req, res) => {
@@ -35,9 +38,6 @@ app.post('/login', (req, res) => {
   res.status(200).json({ token });
 });
 
-
-// Route for creating a new contract type
-app.post('/contractTypes', createType);
 
 
 
@@ -71,6 +71,31 @@ app.get('/stats/clients', countClients);
 
 // Route for counting the number of contracts
 app.get('/stats/contracts', countContracts);
+
+
+// Route for saving a term in a template
+app.post('/save-term', saveTerm);
+
+// GET endpoint to load template by name
+app.get('/load-template/:templateName', loadActTemplate);
+
+// Put endpoint to update a term
+app.put('/update-term', updateTerm);
+
+// Delete endpoint to delete a term
+app.delete('/delete-term', deleteTerm);
+
+
+// Post endpoint to release the act with the filled term values, it saves it in template/templateData/ready.json which the pdf.js call and get the data from it
+app.post('/release-file', releaseFile);
+
+// Post endpoint to creat a template nature 
+app.post('/add-nature', createTemplateFolder);
+
+app.put('/update-nature', updateTemplateFolder);
+
+app.delete('/delete-nature', deleteTemplateFolder);
+
 
 
 
