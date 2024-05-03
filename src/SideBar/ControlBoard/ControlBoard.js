@@ -11,6 +11,7 @@ import SideBar from '../../SideBar';
 import o1 from '../../icons/1.svg';
 import o2 from '../../icons/2.svg';
 import o3 from '../../icons/3.svg';
+import { useUser } from '../../context/userContext';
 
 
 const router = createBrowserRouter([
@@ -30,8 +31,7 @@ const router = createBrowserRouter([
 
 function ControlBoard(){
     const { archiveConract,archiveClients,Models,numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
-    const location = useLocation();
-    const user = location.state ? location.state.user : null;
+    const { user } = useUser();
 
     
     console.log(user)
@@ -67,7 +67,7 @@ function ControlBoard(){
         
             <div className='time'>
                 
-                    <div className='time-title flex flex-row-reverse '>  (ة)  مكتب الأستاذ <div className='mr-[6px]'> {user} </div> </div><div className='barre-time'></div>
+                    <div className='time-title flex flex-row-reverse pt-[20px] pr-[25%] '>  (ة)  مكتب الأستاذ </div><div className='flex justify-center'><div className='time-title pb-[20px]'> {user} </div> </div><div className='barre-time'></div>
                     <div className='time-time'>
                         <div className='time-clock'><Clock  color="#DDB660" fontSize="30pt" fontWeight="Bold" fontFamily="monospace"/></div>
                         <div className='time-icon'><img src={LogoClock} className='logoClock'/></div>

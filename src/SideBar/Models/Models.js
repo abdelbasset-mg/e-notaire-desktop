@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import triangle from '../../icons/triangle.svg';
 import './Models.css';
-import { useConstants } from '../AddContract/BtnSave/Constants';
+import { useConstants } from './BtnAddNature/Constants';
 import { Link } from 'react-router-dom';
 import Model from './Model/Model';
-import Add from '../AddContract/BtnSave/BtnSave';
+import Add from './BtnAddNature/BtnSave';
 import SideBar from '../../SideBar';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
@@ -13,28 +15,7 @@ export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
-    // useEffect(() => {
-    //     const fetchData = async (res, req) =>{
-    //         const response = await axios.post("http://localhost:5000/namadij",{
-    //             email: jfjfj,
-    //             emeem
-    //         })
-            
-    //     }
 
-    //     fetchData()
-    // }, [])
-    
-    
-    //let {number,natureOfContract,numberOfModels}=newContract;
-    // function changeHandle(){
-    //     setInputTable([...inputTable,[number,natureOfContract,numberOfModels]])
-    //     setNewContract( {number:'',
-    //     natureOfContract:'',
-    //     numberOfModels:''})
-    //     setOpenModel(false);
-    //     seti(i+1)
-    // }
     return (
         <>
         <div className='flex flex-row-reverse h-[100%]'>

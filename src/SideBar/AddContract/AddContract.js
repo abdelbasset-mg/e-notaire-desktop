@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import triangle from '../../icons/triangle.svg';
 import '../Models/Models.css';
-import { useConstants } from '../AddContract/BtnSave/Constants';
+import { useConstants } from '../Models/BtnAddNature/Constants';
 import { Link } from 'react-router-dom';
 
-import Add from '../AddContract/BtnSave/BtnSave';
 import SideBar from '../../SideBar';
 
 

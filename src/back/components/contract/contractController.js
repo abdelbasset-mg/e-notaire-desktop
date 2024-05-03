@@ -70,7 +70,7 @@ function createContract(req, res) {
 
   res
     .status(200)
-    .json({ message: "Contract created successfully", contract: newContract });
+    .json({ contract: newContract });
 }
 
 // Function to get information of a contract
