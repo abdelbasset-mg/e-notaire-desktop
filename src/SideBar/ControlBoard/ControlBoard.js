@@ -1,5 +1,5 @@
 
-import { NavLink, createBrowserRouter } from 'react-router-dom';
+import { NavLink, createBrowserRouter,useLocation } from 'react-router-dom';
 import AddContract from '../AddContract/AddContract';
 import Clock from './elements-controlBoard/Clock';
 import DateC from './elements-controlBoard/DateC';
@@ -29,13 +29,18 @@ const router = createBrowserRouter([
 
 
 function ControlBoard(){
-    const { archiveConract,archiveClients,Models,user,numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
+    const { archiveConract,archiveClients,Models,numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
+    const location = useLocation();
+    const user = location.state ? location.state.user : null;
+
+    
+    console.log(user)
     return(
         
         <>
     <div className='flex flex-row-reverse h-[100%]'>
         <div className='w-[13%]'>
-                <SideBar />
+                <SideBar user={user} />
         </div>
         <div className='w-[87%] flex flex-col'>
 
@@ -62,7 +67,7 @@ function ControlBoard(){
         
             <div className='time'>
                 
-                    <div className='time-title'>  مكتب الأستاذ  {user}</div><div className='barre-time'></div>
+                    <div className='time-title flex flex-row-reverse '>  (ة)  مكتب الأستاذ <div className='mr-[6px]'> {user} </div> </div><div className='barre-time'></div>
                     <div className='time-time'>
                         <div className='time-clock'><Clock  color="#DDB660" fontSize="30pt" fontWeight="Bold" fontFamily="monospace"/></div>
                         <div className='time-icon'><img src={LogoClock} className='logoClock'/></div>

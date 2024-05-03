@@ -11,7 +11,6 @@ const [numberOfAct2,setNumberOfAct2]=useState(120)
 const [numberOfAct3,setNumberOfAct3]=useState(95)
 
    // LE NOM DE L'ADMIN
-const [user,setUser] = useState("أحمد بوحمرة")
 const [admin,setAdmin] = useState("admin1")
 
  
@@ -19,7 +18,6 @@ return{
     archiveClients,
     archiveConract,
     Models,
-    user,
     numberOfAct1,
     numberOfAct2,
     numberOfAct3,

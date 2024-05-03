@@ -13,7 +13,18 @@ export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
+    // useEffect(() => {
+    //     const fetchData = async (res, req) =>{
+    //         const response = await axios.post("http://localhost:5000/namadij",{
+    //             email: jfjfj,
+    //             emeem
+    //         })
+            
+    //     }
 
+    //     fetchData()
+    // }, [])
+    
     
     //let {number,natureOfContract,numberOfModels}=newContract;
     // function changeHandle(){
