@@ -2,9 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./components/auth/authController');
 const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
-const { createContract, getContract, updateContract, deleteContract } = require('./components/contract/contractController');
-const { countClients, countContracts } = require('./components/stats/statsController');
-const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm} = require('./components/template/templateControler');
+const { createContract, getContract, updateContract, deleteContract,countContracts, countClients } = require('./components/contract/contractController');
+const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
 const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
 
 
@@ -66,11 +65,12 @@ app.put('/contracts/:id', updateContract);
 // Route for deleting a contract
 app.delete('/contracts/:id', deleteContract);
 
-// Route for counting the number of clients
-app.get('/stats/clients', countClients);
+// New route for counting contracts
+app.get('/contracts-count',countContracts);
 
-// Route for counting the number of contracts
-app.get('/stats/contracts', countContracts);
+// New route for counting clients
+app.get('/clients-count',countClients);
+
 
 
 // Route for saving a term in a template
@@ -85,6 +85,10 @@ app.put('/update-term', updateTerm);
 // Delete endpoint to delete a term
 app.delete('/delete-term', deleteTerm);
 
+// GET endpoint to count the number of json files in the templateData folder
+app.get('/templates-count', countJsonFiles);
+
+
 
 // Post endpoint to release the act with the filled term values, it saves it in template/templateData/ready.json which the pdf.js call and get the data from it
 app.post('/release-file', releaseFile);
@@ -97,6 +101,7 @@ app.put('/update-nature', updateTemplateFolder);
 app.delete('/delete-nature', deleteTemplateFolder);
 
 app.get('/read-nature', readTemplateFolders);
+
 
 
 

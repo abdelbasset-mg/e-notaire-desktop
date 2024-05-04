@@ -95,4 +95,28 @@ function deleteContract(req, res) {
   res.status(200).json({ message: 'Contract deleted successfully' });
 }
 
-module.exports = { createContract, getContract, updateContract, deleteContract };
+// Function to count the number of contracts
+function countContracts(req, res) {
+  try {
+    const data = readData();
+    const contractCount = data.contract ? data.contract.length : 0;
+    res.status(200).json({ contractCount });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to count contracts' });
+  }
+}
+
+// Function to count the number of contracts and return twice the count
+function countClients(req, res) {
+  try {
+    const data = readData();
+    const contractCount = data.contract ? data.contract.length : 0;
+    const doubleContractCount = contractCount * 2; // Calculate twice the contract count
+
+    res.status(200).json({ doubleContractCount }); // Return twice the contract count
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to count contracts' });
+  }
+}
+
+module.exports = { createContract, getContract, updateContract, deleteContract,countContracts,countClients };
