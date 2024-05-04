@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./components/auth/authController');
 const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
-const { createContract, getContract, updateContract, deleteContract,countContracts, countClients } = require('./components/contract/contractController');
+const { createContract, getContract, updateContract, deleteContract,countContracts, countClients, calculateContractsByDay } = require('./components/contract/contractController');
 const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
 const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
 
@@ -70,6 +70,9 @@ app.get('/contracts-count',countContracts);
 
 // New route for counting clients
 app.get('/clients-count',countClients);
+
+// New route for counting contracts by day
+app.get('/contracts-by-day', calculateContractsByDay);
 
 
 

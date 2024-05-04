@@ -119,4 +119,43 @@ function countClients(req, res) {
   }
 }
 
-module.exports = { createContract, getContract, updateContract, deleteContract,countContracts,countClients };
+
+const countContractsByDay = (contractData) => {
+  try {
+    const contracts = contractData.contract;
+    const dayCounts = {};
+
+    contracts.forEach(contract => {
+      const date = contract.dateContract || contract.formattedDate;
+      if (date) {
+        const day = new Date(date).toISOString().split('T')[0];
+        if (dayCounts[day]) {
+          dayCounts[day]++;
+        } else {
+          dayCounts[day] = 1;
+        }
+      }
+    });
+
+    return dayCounts;
+  } catch (error) {
+    console.error('Error counting contracts by day:', error);
+    throw new Error('Failed to count contracts by day');
+  }
+};
+
+const calculateContractsByDay = (req, res) => {
+  try {
+    const contractData = require('./contractData.json'); // Load your JSON data here
+
+    const dayCounts = countContractsByDay(contractData);
+
+    res.status(200).json(dayCounts);
+  } catch (error) {
+    console.error('Error retrieving contract data:', error);
+    res.status(500).json({ error: 'Failed to retrieve contract data' });
+  }
+};
+
+
+module.exports = { createContract, getContract, updateContract, deleteContract,countContracts,countClients,calculateContractsByDay };
