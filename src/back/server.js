@@ -5,7 +5,7 @@ const { registerPerson, updatePerson, deletePerson, getPerson } = require('./com
 const { createContract, getContract, updateContract, deleteContract } = require('./components/contract/contractController');
 const { countClients, countContracts } = require('./components/stats/statsController');
 const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm} = require('./components/template/templateControler');
-const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder} = require('./components/template/natureControler');
+const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
 
 
 const app = express();
@@ -95,6 +95,8 @@ app.post('/add-nature', createTemplateFolder);
 app.put('/update-nature', updateTemplateFolder);
 
 app.delete('/delete-nature', deleteTemplateFolder);
+
+app.get('/read-nature', readTemplateFolders);
 
 
 
