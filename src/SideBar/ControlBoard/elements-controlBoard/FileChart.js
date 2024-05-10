@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import axios from 'axios';
 
 const FileGraph = () => {
     const CustomTooltip = ({ active, payload, label }) => {
@@ -51,26 +52,17 @@ const FileGraph = () => {
 ];
 
     const [data, setData] = useState(initialData);
+    const [contractDay, setContractDay] = useState(0)
+    useEffect(() => {
+        const fetchData = async (req,res) => {
+          const contractDay = await axios.get("http://localhost:5000/contracts-by-day")
+          console.log(contractDay)
+        }
+      
+        fetchData()
+      }, [])
 
-    // useEffect(() => {
-    // const interval = setInterval(() => {
-    //     const now = new Date();
-    //     const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-    //
-        
-    //     setData(prevData => {
-    //         const updatedData = [...prevData];
-    //         const index = updatedData.findIndex(item => item.time === currentTime);
-    //         if (index !== -1) {
-    //         updatedData[index] = { time: currentTime, الملفات: updatedData[index].الملفات };
-    //         }
-    //
-    //         return updatedData;
-    //     });
-    //     },360000);
 
-    // return () => clearInterval(interval);
-    // }, []);
 
     return (
         <ResponsiveContainer width="100%">

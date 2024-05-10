@@ -12,8 +12,9 @@
     border-radius: 8px;
     box-shadow: -2px 0px 8px 1px #DDB660;
     border: none;
-    padding: 7px 6px 7px 150px;
+    padding: 7px 6px 7px 0px;
     margin-right: 20px;
+    width: 350px;
 }
 .name{
     margin-top: 2px;

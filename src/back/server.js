@@ -1,59 +1,43 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const { registerUser, loginUser } = require("./components/auth/authController");
-const { createType } = require("./components/contractType/typeController");
-const {
-  registerPerson,
-  updatePerson,
-  deletePerson,
-  getPerson,
-} = require("./components/client/clientController");
-const {
-  createContract,
-  getContract,
-  updateContract,
-  deleteContract,
-} = require("./components/contract/contractController");
-const {
-  countClients,
-  countContracts,
-} = require("./components/stats/statsController");
-const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm} = require('./components/template/templateControler');
-const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder} = require('./components/template/natureControler');
+const express = require('express');
+const bodyParser = require('body-parser');
+const { registerUser, loginUser } = require('./components/auth/authController');
+const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
+const { createContract, getContract, updateContract, deleteContract,countContracts, countClients, calculateContractsByDay } = require('./components/contract/contractController');
+const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
+const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
+const cors = require('cors')
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-const cors = require("cors");
-app.use(cors());
+app.use(cors())
+
 
 // Registration route
-app.post("/register", async (req, res) => {
+app.post('/register', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username and password are required" });
+    return res.status(400).json({ message: 'Username and password are required' });
   }
   registerUser(username, password);
-  res.status(201).json({ message: "User registered successfully" });
+  res.status(201).json({ message: 'User registered successfully' });
 });
 
 // Login route
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username and password are required" });
+    return res.status(400).json({ message: 'Username and password are required' });
   }
   const token = loginUser(username, password);
   if (!token) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    return res.status(401).json({ message: 'Invalid credentials' });
   }
   res.status(200).json({ token });
 });
+
+
 
 
 // Route for registering a new person
@@ -81,10 +65,15 @@ app.put('/contracts/:id', updateContract);
 // Route for deleting a contract
 app.delete('/contracts/:id', deleteContract);
 
-// Route for counting the number of clients
-app.get('/stats/clients', countClients);
-// Route for counting the number of contracts
-app.get('/stats/contracts', countContracts);
+// New route for counting contracts
+app.get('/contracts-count',countContracts);
+
+// New route for counting clients
+app.get('/clients-count',countClients);
+
+// New route for counting contracts by day
+app.get('/contracts-by-day', calculateContractsByDay);
+
 
 
 // Route for saving a term in a template
@@ -99,6 +88,10 @@ app.put('/update-term', updateTerm);
 // Delete endpoint to delete a term
 app.delete('/delete-term', deleteTerm);
 
+// GET endpoint to count the number of json files in the templateData folder
+app.get('/templates-count', countJsonFiles);
+
+
 
 // Post endpoint to release the act with the filled term values, it saves it in template/templateData/ready.json which the pdf.js call and get the data from it
 app.post('/release-file', releaseFile);
@@ -109,6 +102,12 @@ app.post('/add-nature', createTemplateFolder);
 app.put('/update-nature', updateTemplateFolder);
 
 app.delete('/delete-nature', deleteTemplateFolder);
+
+app.get('/read-nature', readTemplateFolders);//iciiiiiiii
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

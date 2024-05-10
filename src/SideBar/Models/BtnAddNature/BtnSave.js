@@ -15,7 +15,7 @@ const Add = ({open, onClose, changeHandle})=>{
 
     const onSubmit = async (event) =>{
         try{
-        const response = await axios.post("http://localhost:8000/add-nature", {
+        const response = await axios.post("http://localhost:5000/add-nature", {
             templateNature:nature
         })
         setNature("");

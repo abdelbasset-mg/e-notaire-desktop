@@ -93,4 +93,16 @@ function createTemplateFolder(req, res) {
     }
   }
 
-  module.exports ={createTemplateFolder,updateTemplateFolder,deleteTemplateFolder};
+  function readTemplateFolders(req, res) {
+    const templateDataPath = path.join(__dirname, 'templateData');
+
+    try {
+        const folders = fs.readdirSync(templateDataPath).filter(item => fs.statSync(path.join(templateDataPath, item)).isDirectory());
+        res.status(200).json({ folders });
+    } catch (error) {
+        console.error('Error reading folders:', error);
+        res.status(500).json({ error: 'Failed to read folders.' });
+    }
+}
+
+  module.exports ={createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders};

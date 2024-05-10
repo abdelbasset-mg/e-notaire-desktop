@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const api = "http://localhost:8000/contracts/";
+const api = "http://localhost:5000/contracts/";
 
 const initialState = {
   contract: [],

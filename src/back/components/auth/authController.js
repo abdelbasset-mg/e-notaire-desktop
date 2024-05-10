@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
+const { default: toast } = require('react-hot-toast');
 
 const secretKey = '4444'; // Change this with a random secret key
 const dataFilePath = path.join(__dirname, 'authData.json');
@@ -18,13 +19,28 @@ function writeData(data) {
     fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
 }
 
+
 // Register a new user
 function registerUser(username, password) {
     const data = readData();
+  
+    // Check if the username already exists
+    const existingUser = data.users.find(user => user.username === username);
+    if (existingUser) {
+      throw new Error('Username already exists');
+     
+    }
+  
+    // Hash the password
     const hashedPassword = bcrypt.hashSync(password, 8);
+  
+    // Add the new user to the data
     data.users.push({ username, password: hashedPassword });
+  
+    // Save the updated data
     writeData(data);
-}
+  }
+  
 
 // Login user
 function loginUser(username, password) {

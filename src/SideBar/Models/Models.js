@@ -15,6 +15,18 @@ export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
+    const[readNature,setReadNature]=useState([])
+
+    useEffect(() => {
+        const fetchData = async (req,res) => {
+            const readNature = await axios.get("http://localhost:5000/read-nature")
+            setReadNature(readNature.data.folders)
+          }
+        
+          fetchData()
+    
+    }, [])
+    
 
     return (
         <>
@@ -61,15 +73,15 @@ export const  Models = () => {
                 </div>
                 <div className='scrollbar'>
                         {
-                        inputTable.filter(contract=>contract.natureOfContract.includes(result)).map(
+                        readNature.filter(folders=>folders.includes(result)).map(
                             (data,index)=>{
                                 return(
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data.natureOfContract)}  key={data.natureOfContract} to={`/نماذج العقود/${data.natureOfContract}`} dir='ltr'>
+                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/نماذج العقود/${data}`} dir='ltr'>
         
-                                        <div className='numberOfContract'>{data.number}</div>
-                                        <div key={data.natureOfContract} className='natureOfContract'>{data.natureOfContract}</div>
-                                        <div className='numberOfModels'><div className='models'>{data.numberOfModels}</div></div>
+                                        <div className='numberOfContract'>{index}</div>
+                                        <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
+                                        <div className='numberOfModels'><div className='models'>{0}</div></div>
             
                                     </Link>
                                    

@@ -13,9 +13,9 @@ function saveTerm(req, res) {
   }
 
   // Check if template name is a valid file name
-  if (!isValidFileName(templateName)) {
-      return res.status(400).json({ error: "Invalid template name. It should not contain special characters." });
-  }
+  // if (!isValidFileName(templateName)) {
+  //     return res.status(400).json({ error: "Invalid template name. It should not contain special characters." });
+  // }
 
   // Construct folder path based on template nature
   const folderPath = path.join(__dirname, 'templateData', templateNature);
@@ -139,11 +139,11 @@ function deleteTerm(req, res) {
 }
 
 // Function to validate file name
-function isValidFileName(fileName) {
-    // Basic validation for file name
-    const pattern = /^[a-zA-Z0-9-_]+$/;
-    return pattern.test(fileName);
-}
+// function isValidFileName(fileName) {
+//     // Basic validation for file name
+//     const pattern = /^[a-zA-Z0-9-_]+$/;
+//     return pattern.test(fileName);
+// }
 
 
 // Function to load activity template
@@ -217,4 +217,48 @@ function releaseFile(req, res) {
   }
 }
 
-  module.exports ={saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm};
+// Function to count the number of JSON files in all folders within templateData and subtract 1
+function countJsonFiles(req, res) {
+  const templateDataPath = path.join(__dirname, 'templateData');
+
+  try {
+    // Initialize count
+    let fileCount = 0;
+
+    // Recursively traverse through the templateData directory
+    function traverse(dir) {
+      const files = fs.readdirSync(dir);
+
+      // Loop through each file/directory in the current directory
+      for (const file of files) {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+
+        if (stat.isDirectory()) {
+          // If it's a directory, recursively traverse into it
+          traverse(filePath);
+        } else if (path.extname(file) === '.json') {
+          // If it's a JSON file, increment the count
+          fileCount++;
+        }
+      }
+    }
+
+    // Start traversing from the templateData directory
+    traverse(templateDataPath);
+
+    // Subtract 1 from the count of JSON files (if there are any)
+    if (fileCount > 0) {
+      fileCount--;
+    }
+
+    // Respond with the adjusted count of JSON files
+    res.status(200).json({ adjustedJsonFileCount: fileCount });
+  } catch (error) {
+    console.error('Error counting JSON files:', error);
+    res.status(500).json({ error: 'Failed to count JSON files' });
+  }
+}
+
+
+  module.exports ={saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles};

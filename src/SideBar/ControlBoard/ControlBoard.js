@@ -12,11 +12,15 @@ import o1 from '../../icons/1.svg';
 import o2 from '../../icons/2.svg';
 import o3 from '../../icons/3.svg';
 import { useUser } from '../../context/userContext';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+
 
 
 const router = createBrowserRouter([
     {
-        path:'/',
+        path:'/dashboard',
         element:<ControlBoard />,
 
     },
@@ -30,11 +34,28 @@ const router = createBrowserRouter([
 
 
 function ControlBoard(){
-    const { archiveConract,archiveClients,Models,numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
+    const { numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
     const { user } = useUser();
+    const [clientCount, setClientCount] = useState(0)
+    const [contractCount, setContractCount] = useState(0)
+    const [templateCount, setTemplateCount] = useState(0)
 
-    
-    console.log(user)
+    useEffect(() => {
+        const fetchData = async (req,res) => {
+          const clientCount = await axios.get("http://localhost:5000/clients-count")
+          const contractCount = await axios.get("http://localhost:5000/contracts-count")
+          const templateCount = await axios.get("http://localhost:5000/templates-count")
+
+          setClientCount(clientCount.data.doubleContractCount)
+          setContractCount(contractCount.data.contractCount)
+          setTemplateCount(templateCount.data.adjustedJsonFileCount)
+
+        }
+      
+        fetchData()
+      }, [])
+   
+   
     return(
         
         <>
@@ -59,9 +80,9 @@ function ControlBoard(){
                 <div className='title-info'>معلومات عامة حول المكتب</div>
             
                     <div className='circles'>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{Models}</div></div></div><div className='sousTitre'>أرشيف العقود</div></div>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{archiveClients}</div></div></div><div className='sousTitre'>أرشيف الزبائن</div></div>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{archiveConract}</div></div></div><div className='sousTitre'>نماذج العقود</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{templateCount}</div></div></div><div className='sousTitre'>أرشيف العقود</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{clientCount}</div></div></div><div className='sousTitre'>أرشيف الزبائن</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{contractCount}</div></div></div><div className='sousTitre'>نماذج العقود</div></div>
                     </div>
             </div>
         

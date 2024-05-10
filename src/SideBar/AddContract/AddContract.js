@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import triangle from '../../icons/triangle.svg';
 import '../Models/Models.css';
 import { useConstants } from '../Models/BtnAddNature/Constants';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import SideBar from '../../SideBar';
 
@@ -12,17 +13,20 @@ export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
+    const[readNature,setReadNature]=useState([])
+
+    useEffect(() => {
+        const fetchData = async (req,res) => {
+            const readNature = await axios.get("http://localhost:5000/read-nature")
+            setReadNature(readNature.data.folders)
+          }
+        
+          fetchData()
+    
+    }, [])
 
     
-    //let {number,natureOfContract,numberOfModels}=newContract;
-    // function changeHandle(){
-    //     setInputTable([...inputTable,[number,natureOfContract,numberOfModels]])
-    //     setNewContract( {number:'',
-    //     natureOfContract:'',
-    //     numberOfModels:''})
-    //     setOpenModel(false);
-    //     seti(i+1)
-    // }
+   
     return (
         <>
         <div className='flex flex-row-reverse h-[100%]'>
@@ -64,16 +68,16 @@ export const  Models = () => {
                 </div>
                 </div>
                 <div className='scrollbar'>
-                        {
-                        inputTable.filter(contract=>contract.natureOfContract.includes(result)).map(
+                {
+                        readNature.filter(folders=>folders.includes(result)).map(
                             (data,index)=>{
                                 return(
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data.natureOfContract)}  key={data.natureOfContract} to={`/تحرير عقد/${data.natureOfContract}`} dir='ltr'>
+                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/تحرير عقد/${data}`} dir='ltr'>
         
-                                        <div className='numberOfContract'>{data.number}</div>
-                                        <div key={data.natureOfContract} className='natureOfContract'>{data.natureOfContract}</div>
-                                        <div className='numberOfModels'><div className='models'>{data.numberOfModels}</div></div>
+                                        <div className='numberOfContract'>{index}</div>
+                                        <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
+                                        <div className='numberOfModels'><div className='models'>{0}</div></div>
             
                                     </Link>
                                    
