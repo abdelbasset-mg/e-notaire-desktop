@@ -12,6 +12,7 @@ import './Model2.css';
 import { useConstants_1 } from './Constants/Constants';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { set } from 'mongoose';
 
 
 function Model2() {
@@ -20,6 +21,7 @@ function Model2() {
     const [newItems, setNewItems] = useState([{ title1: "", title2: "", editing: true }]);
     const [isEditing, setIsEditing] = useState(false); 
     const { inputTermText, inputTermTitle, setInputTermText, setInputTermTitle } = useConstants_1();
+ 
 
     // Function to handle form submission
     const onSubmit = async (event, index) => {
@@ -34,13 +36,33 @@ function Model2() {
             const response = await axios.post("http://localhost:5000/save-term", term);
             toast.success("Term saved");
             const updatedItems = [...newItems];
-            updatedItems[index].editing = false; // Disable editing after saving
+            updatedItems[index].editing = false; 
             setNewItems(updatedItems);
         } catch (error) {
             console.log("Failed to save term: ", error);
             toast.error("Failed to save term");
         }
     };
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/load-template/${model}/${Result}`);
+                console.log(response.data); // Assuming response contains data
+                setInputTermText(response.data)
+                setInputTermTitle(response.data)
+            } catch (error) {
+                console.error("Error fetching template:", error);
+            }
+        }
+        
+        fetchData();
+    
+    }, []); // Assuming Result is a dependency
+    
+    
 
     // Function to handle input change
     const handleInputChange = (event, index, field) => {
@@ -55,6 +77,7 @@ function Model2() {
         updatedItems[index].editing = true; // Enable editing
         setNewItems(updatedItems);
     };
+   
 
     return (
         <div className='flex flex-row-reverse h-[100%]'>

@@ -8,11 +8,16 @@ import Add from './BtnAddNature/BtnSave';
 import SideBar from '../../SideBar';
 import axios from 'axios';
 import { useEffect } from 'react';
+import update from '../../icons/pencil.svg';
+import supp from '../../icons/supp.svg';
+import UpdateNature from './UpdateNature';
 
 
 
 export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
+    const [openModel2,setOpenModel2]= useState(false)
+
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
     const[readNature,setReadNature]=useState([])
@@ -26,6 +31,16 @@ export const  Models = () => {
           fetchData()
     
     }, [])
+    const handleDelete = async (templateNature) => {
+        try {
+          const response = await axios.delete("http://localhost:5000/delete-nature", { data: { templateNature } });
+          const updatedNature = readNature.filter(nature => nature !== templateNature);
+          setReadNature(updatedNature);
+        } catch (error) {
+          console.error('Error deleting template nature:', error);
+        }
+      };
+
     
 
     return (
@@ -76,14 +91,22 @@ export const  Models = () => {
                         readNature.filter(folders=>folders.includes(result)).map(
                             (data,index)=>{
                                 return(
+                                    <>
+                                    <div className='flex '>
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/نماذج العقود/${data}`} dir='ltr'>
+                                    <Link className='line-contract w-[89%] hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/نماذج العقود/${data}`} dir='ltr'>
         
                                         <div className='numberOfContract'>{index}</div>
                                         <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
                                         <div className='numberOfModels'><div className='models'>{0}</div></div>
             
                                     </Link>
+                                    <button onClick={()=> setOpenModel2(true)} className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]  '   /></button>
+                                    <button onClick={() => handleDelete(data)} className='mr-[1%] h-max mt-[1%]'><img src={supp} className='w-[30px] '  /></button>
+                                    <UpdateNature data={data} open={openModel2} onClose={()=> setOpenModel2(false) }/>
+
+                                    </div>
+                                    </>
                                    
                                     
                                 )

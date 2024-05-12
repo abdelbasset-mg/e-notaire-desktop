@@ -148,7 +148,7 @@ function deleteTerm(req, res) {
 
 // Function to load activity template
 function loadActTemplate(req, res) {
-  const { templateName } = req.params;
+  const { templateName,templateNature } = req.params;
   
 
   // Check if template name is provided
@@ -159,7 +159,7 @@ function loadActTemplate(req, res) {
   try {
     
       // Construct file path
-      const filePath = path.join(__dirname, 'templateData', `${templateName}.json`);
+      const filePath = path.join(__dirname, 'templateData', `${templateNature}/${templateName}.json`);
 
       // Read and parse JSON data from file
       const templateData = JSON.parse(fs.readFileSync(filePath, 'utf8'));

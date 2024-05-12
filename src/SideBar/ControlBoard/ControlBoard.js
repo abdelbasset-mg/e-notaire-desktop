@@ -51,6 +51,9 @@ function ControlBoard(){
           setTemplateCount(templateCount.data.adjustedJsonFileCount)
 
         }
+        console.log(contractCount)
+        console.log(templateCount)
+        console.log(clientCount)
       
         fetchData()
       }, [])
@@ -80,9 +83,9 @@ function ControlBoard(){
                 <div className='title-info'>معلومات عامة حول المكتب</div>
             
                     <div className='circles'>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{templateCount}</div></div></div><div className='sousTitre'>أرشيف العقود</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{contractCount}</div></div></div><div className='sousTitre'>أرشيف العقود</div></div>
                         <div className='circle'><div className='c1'><div className='c2'><div className='number'>{clientCount}</div></div></div><div className='sousTitre'>أرشيف الزبائن</div></div>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{contractCount}</div></div></div><div className='sousTitre'>نماذج العقود</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{templateCount}</div></div></div><div className='sousTitre'>نماذج العقود</div></div>
                     </div>
             </div>
         

@@ -6,6 +6,8 @@ import './Model.css';
 import Add from '../ButtonAdd/ButtonAdd';
 import { useConstants } from '../Model/typemodel';
 import SideBar from '../../../SideBar';
+import supp from "../../../icons/supp.svg";
+import update from "../../../icons/pencil.svg"
 
 function Model() {
    
@@ -62,22 +64,30 @@ function Model() {
            
             <div className='scrollbar' dir='rtl'>
                 {
-                    inputTable
-                        .filter(model => model.natureOfModel.includes(Result))
-                        .map((data, index) => (
+                    inputTable.filter(model => model.natureOfModel.includes(Result))
+                        .map((data, index) => {
+                            return(
+                                <>
+                                <div className='flex '>
                             <Link
                                 dir='ltr'
                                 onClick={() => setResult(data.natureOfModel)} 
                                 to={`/نماذج العقود/${model}/${data.natureOfModel}`}
 
-                                className='line-contract hover:bg-[#FFF5DE]'
+                                className='line-contract w-[89%] hover:bg-[#FFF5DE]'
                             >
                                 <div className='numberOfContract'>{data.number}</div>
                                 <div className='natureOfContract'>{data.natureOfModel}</div>
                                 <div className='numberOfModels'><div className='models'>{data.numberOfModel}</div></div>
                             </Link>
-                        ))
+                            <button  className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]  '   /></button>
+                            <button  className='mr-[1%] h-max mt-[1%]'><img src={supp} className='w-[30px] '  /></button>
+                            </div>
+                            </>
+                        )
                 }
+            )
+        }
             </div> </div>
         </div>
         </div>

@@ -73,7 +73,7 @@ export const  Models = () => {
                             (data,index)=>{
                                 return(
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/تحرير عقد/${data}`} dir='ltr'>
+                                    <Link className='line-contract w-[90%] hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/تحرير عقد/${data}`} dir='ltr'>
         
                                         <div className='numberOfContract'>{index}</div>
                                         <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
