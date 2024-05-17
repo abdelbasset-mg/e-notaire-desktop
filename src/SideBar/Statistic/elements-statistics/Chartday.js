@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import axios from 'axios';
 
 const FileGraph = () => {
     const CustomTooltip = ({ active, payload, label }) => {
@@ -13,82 +14,76 @@ const FileGraph = () => {
     
         return null;
     };
-   
-    const initialData = [
-    { day: '1', الملفات: 50 },
-    { day: '2', الملفات: 50 },
-    { day: '3', الملفات: 50 },
-    { day: '4', الملفات: 100 },
-    { day: '5', الملفات: 50 },
-    { day: '6', الملفات: 60 },
-    { day: '7', الملفات: 10 },
-    { day: '8', الملفات: 50 },
-    { day: '9', الملفات: 50 },
-    { day: '10', الملفات: 50 },
-    { day: '11', الملفات: 80 },
-    { day: '12', الملفات: 50 },
-    { day: '13', الملفات: 60 },
-    { day: '14', الملفات: 50 },
-    { day: '15', الملفات: 100 },
-    { day: '16', الملفات: 50 },
-    { day: '17', الملفات: 60 },
-    { day: '18', الملفات: 10 },
-    { day: '19', الملفات: 50 },
-    { day: '20', الملفات: 50 },
-    { day: '21', الملفات: 80 },
-    { day: '22', الملفات: 50 },
-    { day: '23', الملفات: 60 },
-    { day: '24', الملفات: 50 },
-    { day: '25', الملفات: 100 },
-    { day: '26', الملفات: 50 },
-    { day: '27', الملفات: 60},
-    { day: '28', الملفات: 10 },
-    { day: '29', الملفات: 50},
-    { day: '30', الملفات: 50 },
-    
-    
 
-];
+    const [data, setData] = useState([]);
+    const [contractCount, setContractCount] = useState(0);
+    const [currentDate, setCurrentDate] = useState(new Date());
 
-    const [data, setData] = useState(initialData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const currentDateFormatted = formatDate(currentDate);
+                const contractDataResponse = await axios.get(`http://localhost:5000/templates-count?date=${currentDateFormatted}`);
+                const contractCount = contractDataResponse.data.adjustedJsonFileCount;
+                setContractCount(contractCount);
+            } catch (error) {
+                console.error("Erreur lors de la récupération de contractCount :", error);
+            }
+        };
 
-    // useEffect(() => {
-    // const interval = setInterval(() => {
-    //     const now = new Date();
-    //     const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-    //
-        
-    //     setData(prevData => {
-    //         const updatedData = [...prevData];
-    //         const index = updatedData.findIndex(item => item.time === currentTime);
-    //         if (index !== -1) {
-    //         updatedData[index] = { time: currentTime, الملفات: updatedData[index].الملفات };
-    //         }
-    //
-    //         return updatedData;
-    //     });
-    //     },360000);
+        fetchData();
+    }, [currentDate]);
 
-    // return () => clearInterval(interval);
-    // }, []);
+    useEffect(() => {
+        // Update current date at midnight each day
+        const midnight = new Date(currentDate);
+        midnight.setHours(24, 0, 0, 0);
+        const timeoutId = setTimeout(() => {
+            setCurrentDate(new Date()); // Update current date
+        }, midnight.getTime() - currentDate.getTime());
+
+        return () => clearTimeout(timeoutId);
+    }, [currentDate]);
+
+    useEffect(() => {
+        // Generate data for the graph
+        const newData = [];
+        for (let i = 0; i < 30; i++) { // Loop for 30 days
+            const date = new Date();
+            date.setDate(currentDate.getDate() - i);
+            const formattedDate = formatDate(date);
+            const month = date.toLocaleString('default', { month: 'short' }); // Get short month name
+            const contractsCount = i === 0 ? contractCount : 0; // Assign contractCount to currentDate and 0 to previous dates
+            newData.push({ day: `${date.getDate()} ${month}`, contracts: contractsCount });
+        }
+        setData(newData);
+    }, [contractCount]);
+
+    // Function to format date as 'YYYY-MM-DD'
+    const formatDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     return (
-        <ResponsiveContainer width="100%" height={280}>
-        <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="day" />
-        <YAxis />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend />
-        <Line  type="monotone" dataKey="الملفات" stroke="#284A68" strokeWidth={4}  filter='url(#shadow)' activeDot={{ r: 10 ,fill:'#DDB660'  }} dot={{r:6, fill:'#DDB660', strokeWidth:2,stroke:'white'}}/>
-        <defs>
-    <filter id="shadow" x="-10" y="-10" width="300" height="300">
-    <feDropShadow dx="-1" dy="3" stdDeviation="3" floodColor="#DDB660" />
-    </filter>
-</defs>
-        </LineChart>
+        <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" type="category" />
+                <YAxis />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+                <Line type="monotone" dataKey="contracts" stroke="#284A68" strokeWidth={4} filter='url(#shadow)' activeDot={{ r: 10, fill: '#DDB660' }} dot={{ r: 6, fill: '#DDB660', strokeWidth: 2, stroke: 'white' }} />
+                <defs>
+                    <filter id="shadow" x="-10" y="-10" width="300" height="300">
+                        <feDropShadow dx="-1" dy="3" stdDeviation="3" floodColor="#DDB660" />
+                    </filter>
+                </defs>
+            </LineChart>
         </ResponsiveContainer>
-);
+    );
 };
 
 export default FileGraph;

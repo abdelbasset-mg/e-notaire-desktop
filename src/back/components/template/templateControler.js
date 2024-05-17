@@ -13,9 +13,9 @@ function saveTerm(req, res) {
   }
 
   // Check if template name is a valid file name
-  if (!isValidFileName(templateName)) {
-      return res.status(400).json({ error: "Invalid template name. It should not contain special characters." });
-  }
+  // if (!isValidFileName(templateName)) {
+  //     return res.status(400).json({ error: "Invalid template name. It should not contain special characters." });
+  // }
 
   // Construct folder path based on template nature
   const folderPath = path.join(__dirname, 'templateData', templateNature);
@@ -139,16 +139,16 @@ function deleteTerm(req, res) {
 }
 
 // Function to validate file name
-function isValidFileName(fileName) {
-    // Basic validation for file name
-    const pattern = /^[a-zA-Z0-9-_]+$/;
-    return pattern.test(fileName);
-}
+// function isValidFileName(fileName) {
+//     // Basic validation for file name
+//     const pattern = /^[a-zA-Z0-9-_]+$/;
+//     return pattern.test(fileName);
+// }
 
 
 // Function to load activity template
 function loadActTemplate(req, res) {
-  const { templateName } = req.params;
+  const { templateName,templateNature } = req.params;
   
 
   // Check if template name is provided
@@ -159,7 +159,7 @@ function loadActTemplate(req, res) {
   try {
     
       // Construct file path
-      const filePath = path.join(__dirname, 'templateData', `${templateName}.json`);
+      const filePath = path.join(__dirname, 'templateData', `${templateNature}/${templateName}.json`);
 
       // Read and parse JSON data from file
       const templateData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -262,7 +262,3 @@ function countJsonFiles(req, res) {
 
 
   module.exports ={saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles};
-
-
-
-

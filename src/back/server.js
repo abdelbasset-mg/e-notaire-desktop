@@ -5,13 +5,13 @@ const { registerPerson, updatePerson, deletePerson, getPerson } = require('./com
 const { createContract, getContract, updateContract, deleteContract,countContracts, countClients, calculateContractsByDay } = require('./components/contract/contractController');
 const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
 const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
-
+const cors = require('cors')
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-
+app.use(cors())
 
 
 // Registration route
@@ -66,30 +66,30 @@ app.put('/contracts/:id', updateContract);
 app.delete('/contracts/:id', deleteContract);
 
 // New route for counting contracts
-app.get('/contracts-count',countContracts);
+app.get('/contracts-count',countContracts);//Done
 
 // New route for counting clients
-app.get('/clients-count',countClients);
+app.get('/clients-count',countClients);//Done
 
 // New route for counting contracts by day
-app.get('/contracts-by-day', calculateContractsByDay);
+app.get('/contracts-by-day', calculateContractsByDay);//Done
 
 
 
 // Route for saving a term in a template
-app.post('/save-term', saveTerm);
+app.post('/save-term', saveTerm);//Done
 
 // GET endpoint to load template by name
-app.get('/load-template/:templateName', loadActTemplate);
+app.get('/load-template/:templateNature/:templateName', loadActTemplate);//fih mchakil
 
 // Put endpoint to update a term
-app.put('/update-term', updateTerm);
+app.put('/update-term', updateTerm);//mzal
 
 // Delete endpoint to delete a term
-app.delete('/delete-term', deleteTerm);
+app.delete('/delete-term', deleteTerm);//mzal
 
 // GET endpoint to count the number of json files in the templateData folder
-app.get('/templates-count', countJsonFiles);
+app.get('/templates-count', countJsonFiles);//done
 
 
 
@@ -97,14 +97,13 @@ app.get('/templates-count', countJsonFiles);
 app.post('/release-file', releaseFile);
 
 // Post endpoint to creat a template nature 
-app.post('/add-nature', createTemplateFolder);
+app.post('/add-nature', createTemplateFolder);//done
 
-app.put('/update-nature', updateTemplateFolder);
+app.put('/update-nature', updateTemplateFolder);//done
 
-app.delete('/delete-nature', deleteTemplateFolder);
+app.delete('/delete-nature/', deleteTemplateFolder);//Done
 
-app.get('/read-nature', readTemplateFolders);
-
+app.get('/read-nature', readTemplateFolders);//done
 
 
 

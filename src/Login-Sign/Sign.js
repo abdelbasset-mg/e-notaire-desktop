@@ -6,6 +6,7 @@ import eyeclose from '../icons/eyeclose.svg';
 import "./Sign.css";
 import logoE_N from './icons/logoE-N.svg';
 import toast from "react-hot-toast";
+import { useEffect } from 'react';
 
 
 function Sign (){
@@ -13,6 +14,10 @@ function Sign (){
     const [userName, setUserName]=useState("");
     const [password, setPassword]=useState("");
     const [confirmPassword, setConfirmPassword]=useState("");
+    const [exist,setExist]=useState("")
+
+
+    
 
     const history = useNavigate();
 
@@ -58,7 +63,7 @@ function Sign (){
             password: password
         }
         try {
-            const response = await axios.post("http://localhost:8000/register", {
+            const response = await axios.post("http://localhost:5000/register", {
                 username: userName,
                 password: password
             });
@@ -70,6 +75,7 @@ function Sign (){
             
         } catch (error) {
             console.error("Registration failed:", error);
+            toast.error("اسم المستخدم موجود من قبل")
         }
         
 

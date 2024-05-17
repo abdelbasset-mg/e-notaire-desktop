@@ -68,7 +68,7 @@ function ChooseModel() {
                                 onClick={() => setModel(data.natureOfModel)} 
                                 to={`/تحرير عقد/${contract}/${data.natureOfModel}`}
 
-                                className='line-contract hover:bg-[#FFF5DE]'
+                                className='line-contract w-[90%] hover:bg-[#FFF5DE]'
                             >
                                 <div className='numberOfContract'>{data.number}</div>
                                 <div className='natureOfContract'>{data.natureOfModel}</div>

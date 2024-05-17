@@ -21,9 +21,14 @@ import {
     import { useState } from "react";
     import Login from "./Login-Sign/Login";
     import { useConstants } from "./SideBar/ControlBoard/Constants/Constants";
+    import { useUser } from './context/userContext';
+
+
     
-    const SideBar = ({user}) => {
+    const SideBar = () => {
+      const {user} = useUser();
       const { admin } = useConstants();
+
     
       return (
         <>

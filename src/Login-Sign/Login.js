@@ -7,15 +7,16 @@ import eyeclose from '../icons/eyeclose.svg'
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from 'axios';
+import { useUser } from '../context/userContext';
 
 
 
 
 function Login (){
-    const [user,setUser] = useState("")
     const [visible,setVisible]=useState(false);
     const [userName, setUserName]=useState("");
     const [password, setPassword]=useState("");
+    const { setUser } = useUser();
 
     const history = useNavigate();
 
@@ -41,18 +42,19 @@ function Login (){
             toast.error("لم يتم ادخال كلمة المرور")
             return;
         }
+       
         const login = {
             username: userName,
             password: password
         }
         try {
             console.log("debut try")
-            const response = await axios.post("http://localhost:8000/login", {
+            const response = await axios.post("http://localhost:5000/login", {
                 username: userName,
                 password: password
             });
             console.log(response.data)
-           
+            setUser( userName );
             setUserName("");
             setPassword("");
             history("/dashboard" ,{ state: { user: userName } });

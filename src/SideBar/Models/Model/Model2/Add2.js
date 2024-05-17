@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Add2.css';
-import { useConstants } from '../../../AddContract/BtnSave/Constants';
+import { useConstants } from '../../BtnAddNature/Constants';
 import { useConstants_1 } from './Constants/Constants';
 
 

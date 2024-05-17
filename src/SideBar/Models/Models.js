@@ -1,40 +1,48 @@
 import React, { useState } from 'react';
 import triangle from '../../icons/triangle.svg';
 import './Models.css';
-import { useConstants } from '../AddContract/BtnSave/Constants';
+import { useConstants } from './BtnAddNature/Constants';
 import { Link } from 'react-router-dom';
 import Model from './Model/Model';
-import Add from '../AddContract/BtnSave/BtnSave';
+import Add from './BtnAddNature/BtnSave';
 import SideBar from '../../SideBar';
+import axios from 'axios';
+import { useEffect } from 'react';
+import update from '../../icons/pencil.svg';
+import supp from '../../icons/supp.svg';
+import UpdateNature from './UpdateNature';
 
 
 
 export const  Models = () => {
     const [openModel,setOpenModel]= useState(false)
+    const [openModel2,setOpenModel2]= useState(false)
+
     const{newContract,setNewContract,inputTable,result,setResult}=useConstants();
     const[model,setModel]=useState("");
-    // useEffect(() => {
-    //     const fetchData = async (res, req) =>{
-    //         const response = await axios.post("http://localhost:5000/namadij",{
-    //             email: jfjfj,
-    //             emeem
-    //         })
-            
-    //     }
+    const[readNature,setReadNature]=useState([])
 
-    //     fetchData()
-    // }, [])
+    useEffect(() => {
+        const fetchData = async (req,res) => {
+            const readNature = await axios.get("http://localhost:5000/read-nature")
+            setReadNature(readNature.data.folders)
+          }
+        
+          fetchData()
     
+    }, [])
+    const handleDelete = async (templateNature) => {
+        try {
+          const response = await axios.delete("http://localhost:5000/delete-nature", { data: { templateNature } });
+          const updatedNature = readNature.filter(nature => nature !== templateNature);
+          setReadNature(updatedNature);
+        } catch (error) {
+          console.error('Error deleting template nature:', error);
+        }
+      };
+
     
-    //let {number,natureOfContract,numberOfModels}=newContract;
-    // function changeHandle(){
-    //     setInputTable([...inputTable,[number,natureOfContract,numberOfModels]])
-    //     setNewContract( {number:'',
-    //     natureOfContract:'',
-    //     numberOfModels:''})
-    //     setOpenModel(false);
-    //     seti(i+1)
-    // }
+
     return (
         <>
         <div className='flex flex-row-reverse h-[100%]'>
@@ -80,17 +88,25 @@ export const  Models = () => {
                 </div>
                 <div className='scrollbar'>
                         {
-                        inputTable.filter(contract=>contract.natureOfContract.includes(result)).map(
+                        readNature.filter(folders=>folders.includes(result)).map(
                             (data,index)=>{
                                 return(
+                                    <>
+                                    <div className='flex '>
                                     
-                                    <Link className='line-contract hover:bg-[#FFF5DE]' onClick={()=>setModel(data.natureOfContract)}  key={data.natureOfContract} to={`/نماذج العقود/${data.natureOfContract}`} dir='ltr'>
+                                    <Link className='line-contract w-[89%] hover:bg-[#FFF5DE]' onClick={()=>setModel(data)}  key={data} to={`/نماذج العقود/${data}`} dir='ltr'>
         
-                                        <div className='numberOfContract'>{data.number}</div>
-                                        <div key={data.natureOfContract} className='natureOfContract'>{data.natureOfContract}</div>
-                                        <div className='numberOfModels'><div className='models'>{data.numberOfModels}</div></div>
+                                        <div className='numberOfContract'>{index}</div>
+                                        <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
+                                        <div className='numberOfModels'><div className='models'>{0}</div></div>
             
                                     </Link>
+                                    <button onClick={()=> setOpenModel2(true)} className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]  '   /></button>
+                                    <button onClick={() => handleDelete(data)} className='mr-[1%] h-max mt-[1%]'><img src={supp} className='w-[30px] '  /></button>
+                                    <UpdateNature data={data} open={openModel2} onClose={()=> setOpenModel2(false) }/>
+
+                                    </div>
+                                    </>
                                    
                                     
                                 )
