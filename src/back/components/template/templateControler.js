@@ -260,5 +260,75 @@ function countJsonFiles(req, res) {
   }
 }
 
+function createTemplate(req, res) {
+  const { templateName, templateNature } = req.body;
 
-  module.exports ={saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles};
+  // Check if template name and template nature are provided
+  if (!templateName || !templateNature) {
+    return res.status(400).json({ error: "Template name and template nature are required." });
+  }
+
+  // Construct folder path based on template nature
+  const folderPath = path.join(__dirname, 'templateData', templateNature);
+
+  // Ensure the folder exists; create it if it doesn't
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath, { recursive: true }); // Create nested directories recursively
+  }
+
+  // Construct file path within the specific nature folder
+  const filePath = path.join(folderPath, `${templateName}.json`);
+
+  // Check if the file already exists
+  if (fs.existsSync(filePath)) {
+    console.log(`Template file already exists at ${filePath}`);
+    return res.status(400).json({ error: "Template file already exists." });
+  }
+
+  // Create an empty JSON object as template
+  const emptyData = {};
+
+  // Write to JSON file
+  fs.writeFileSync(filePath, JSON.stringify(emptyData, null, 2), 'utf8');
+
+  console.log(`Template created successfully in ${templateNature}/${templateName}.json`);
+
+  // Respond with success message
+  res.status(200).json({ message: `Template created successfully in ${templateNature}/${templateName}.json` });
+}
+function templateList(req, res) {
+  const { templateNature } = req.body;
+
+  // Check if template nature is provided
+  if (!templateNature) {
+    return res.status(400).json({ error: "Template nature is required." });
+  }
+
+  // Construct folder path based on template nature
+  const folderPath = path.join(__dirname, 'templateData', templateNature);
+
+  // Check if the folder exists
+  if (!fs.existsSync(folderPath)) {
+    return res.status(404).json({ error: "Folder not found." });
+  }
+
+  try {
+    // Read the contents of the folder
+    const files = fs.readdirSync(folderPath);
+    
+    // Filter only JSON files
+    const jsonFiles = files.filter(file => path.extname(file) === '.json');
+
+    // Extract file names without extension
+    const fileNames = jsonFiles.map(file => path.basename(file, '.json'));
+
+    // Respond with the list of file names
+    res.status(200).json({ files: fileNames });
+  } catch (error) {
+    console.error("Error reading folder:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}
+
+
+  module.exports ={saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles,createTemplate,templateList};

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./components/auth/authController');
 const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
 const { createContract, getContract, updateContract, deleteContract,countContracts, countClients, calculateContractsByDay } = require('./components/contract/contractController');
-const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
+const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles,createTemplate,templateList} = require('./components/template/templateControler');
 const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
 const cors = require('cors')
 
@@ -76,6 +76,9 @@ app.get('/contracts-by-day', calculateContractsByDay);//Done
 
 
 
+// route for creating an empty template
+app.post('/create-template', createTemplate);
+
 // Route for saving a term in a template
 app.post('/save-term', saveTerm);//Done
 
@@ -104,6 +107,8 @@ app.put('/update-nature', updateTemplateFolder);//done
 app.delete('/delete-nature/', deleteTemplateFolder);//Done
 
 app.get('/read-nature', readTemplateFolders);//done
+
+app.get('/template-list', templateList);
 
 
 
