@@ -17,9 +17,9 @@ function writeData(data) {
 
 // Function to create a new contract
 function createContract(req, res) {
-  const { sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms , price } = req.body;
+  const { clientName, idClient, clientBirth, clientPlace, address, nameFather, nameMother,lastNameMother,phone,cote,sexe,contractNature,model } = req.body;
   // Validate required fields
-  if (!sellerName || !buyerName || !idSeller || !idBuyer || !dateBirthSeller || !dateBirthBuyer || !numberOfRooms || !price ) {
+  if (!clientName || !idClient || !clientBirth || !clientPlace || !address || !nameFather || !nameMother || !lastNameMother || !phone || !cote || !sexe ) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -36,27 +36,59 @@ function createContract(req, res) {
     data.contract = [];
   }
   const currentDate = new Date(); // Get current date and time
-  const formattedDate = currentDate.toISOString(); // Convert to ISO string format
+const formattedDate = currentDate.toISOString().split('T')[0]; // Convert to ISO string format and keep only the date part
 
-  const newContract = { id: Math.random().toString(36).substr(2, 9), sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms,formattedDate,price };
+  const newContract = { id: Math.random().toString(36).substr(2, 9), clientName, idClient, clientBirth, clientPlace, address, nameFather, nameMother,lastNameMother,phone,cote,sexe,contractNature,model,formattedDate};
   data.contract.push(newContract);
   writeData(data);
 
   res.status(201).json({ message: 'Contract created successfully', contract: newContract });
 }
 
+function getTopThreeContractFrequencies(contractFrequencies) {
+  const sortedFrequencies = Object.entries(contractFrequencies).sort((a, b) => b[1] - a[1]);
+  return sortedFrequencies.slice(0, 3).map(([contractNature, frequency]) => ({ contractNature, frequency }));
+}
+
+
 // Function to get information of a contract
+function updateContractFrequencies(data) {
+  const frequencies = {};
+  data.contract.forEach(contract => {
+    if (frequencies[contract.contractNature]) {
+      frequencies[contract.contractNature]++;
+    } else {
+      frequencies[contract.contractNature] = 1;
+    }
+  });
+  data.contractFrequencies = frequencies;
+}
+
 function getContract(req, res) {
   const { id } = req.params;
 
-  const data = readData();
-  const contract = data.contract.find(contract => contract.id === id);
+  let data;
+  try {
+    data = readData();
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+
+  const contract = data.contract;
   if (!contract) {
     return res.status(404).json({ message: 'Contract not found' });
   }
 
-  res.status(200).json({ contract });
+  // Update contract frequencies
+  updateContractFrequencies(data);
+ 
+
+
+  writeData(data);
+
+  res.status(200).json({ contract, contractFrequencies: data.contractFrequencies});
 }
+
 
 // Function to update a contract
 function updateContract(req, res) {
@@ -100,7 +132,8 @@ function countContracts(req, res) {
   try {
     const data = readData();
     const contractCount = data.contract ? data.contract.length : 0;
-    res.status(200).json({ contractCount });
+    const topThreeFrequencies = getTopThreeContractFrequencies(data.contractFrequencies);
+    res.status(200).json({ contractCount,topThreeFrequencies  });
   } catch (error) {
     res.status(500).json({ message: 'Failed to count contracts' });
   }

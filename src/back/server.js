@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./components/auth/authController');
 const { registerPerson, updatePerson, deletePerson, getPerson } = require('./components/client/clientController');
 const { createContract, getContract, updateContract, deleteContract,countContracts, countClients, calculateContractsByDay } = require('./components/contract/contractController');
-const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles} = require('./components/template/templateControler');
+const {saveTerm,releaseFile,loadActTemplate,deleteTerm,updateTerm,countJsonFiles,createTemplate,templateList} = require('./components/template/templateControler');
 const {createTemplateFolder,updateTemplateFolder,deleteTemplateFolder,readTemplateFolders} = require('./components/template/natureControler');
 const cors = require('cors')
 
@@ -57,7 +57,7 @@ app.get('/client/:id', getPerson);
 app.post('/contracts', createContract);
 
 // Route for getting information of a contract
-app.get('/contracts/:id', getContract);
+app.get('/getContracts', getContract);
 
 // Route for updating a contract
 app.put('/contracts/:id', updateContract);
@@ -76,14 +76,17 @@ app.get('/contracts-by-day', calculateContractsByDay);//Done
 
 
 
+// route for creating an empty template
+app.post('/create-template', createTemplate);//done
+
 // Route for saving a term in a template
 app.post('/save-term', saveTerm);//Done
 
 // GET endpoint to load template by name
-app.get('/load-template/:templateNature/:templateName', loadActTemplate);//fih mchakil
+app.get('/load-template/:templateNature/:templateName', loadActTemplate);//done
 
 // Put endpoint to update a term
-app.put('/update-term', updateTerm);//mzal
+app.put('/update-term', updateTerm);//done
 
 // Delete endpoint to delete a term
 app.delete('/delete-term', deleteTerm);//mzal
@@ -104,6 +107,8 @@ app.put('/update-nature', updateTemplateFolder);//done
 app.delete('/delete-nature/', deleteTemplateFolder);//Done
 
 app.get('/read-nature', readTemplateFolders);//done
+
+app.get('/template-list/:templateNature', templateList);
 
 
 

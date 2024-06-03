@@ -22,25 +22,34 @@ export const  Models = () => {
     const[model,setModel]=useState("");
     const[readNature,setReadNature]=useState([])
 
+  
     useEffect(() => {
-        const fetchData = async (req,res) => {
-            const readNature = await axios.get("http://localhost:5000/read-nature")
-            setReadNature(readNature.data.folders)
-          }
-        
-          fetchData()
-    
-    }, [])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/read-nature");
+                setReadNature(response.data.folders);
+            } catch (error) {
+                console.error('Error fetching nature data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const handleDelete = async (templateNature) => {
         try {
-          const response = await axios.delete("http://localhost:5000/delete-nature", { data: { templateNature } });
-          const updatedNature = readNature.filter(nature => nature !== templateNature);
-          setReadNature(updatedNature);
+            await axios.delete("http://localhost:5000/delete-nature", { data: { templateNature } });
+            const updatedNature = readNature.filter(nature => nature !== templateNature);
+            setReadNature(updatedNature);
         } catch (error) {
-          console.error('Error deleting template nature:', error);
+            console.error('Error deleting template nature:', error);
         }
-      };
+    };
 
+    const handleOpenUpdateNature = (data) => {
+        setModel(data); // Stocke la valeur de l'élément sélectionné
+        setOpenModel2(true); // Ouvre UpdateNature
+    };
     
 
     return (
@@ -99,12 +108,11 @@ export const  Models = () => {
                                         <div className='numberOfContract'>{index}</div>
                                         <div key={data.natureOfContract} className='natureOfContract'>{data}</div>
                                         <div className='numberOfModels'><div className='models'>{0}</div></div>
+
             
                                     </Link>
-                                    <button onClick={()=> setOpenModel2(true)} className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]  '   /></button>
+                                    <button onClick={() => { setOpenModel2(true); setModel(data); }} className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]' /></button>
                                     <button onClick={() => handleDelete(data)} className='mr-[1%] h-max mt-[1%]'><img src={supp} className='w-[30px] '  /></button>
-                                    <UpdateNature data={data} open={openModel2} onClose={()=> setOpenModel2(false) }/>
-
                                     </div>
                                     </>
                                    
@@ -118,6 +126,7 @@ export const  Models = () => {
             </div>
             </div>
             </div>
+            <UpdateNature data={model} open={openModel2} onClose={() => setOpenModel2(false)} />
 
         </>
         

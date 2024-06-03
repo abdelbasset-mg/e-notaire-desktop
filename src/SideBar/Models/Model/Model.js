@@ -8,12 +8,30 @@ import { useConstants } from '../Model/typemodel';
 import SideBar from '../../../SideBar';
 import supp from "../../../icons/supp.svg";
 import update from "../../../icons/pencil.svg"
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Model() {
-   
+    const [readTemplate,setReadTemplate]=useState([]);
     const [openModel, setOpenModel] = useState(false);
     const { setResult, Result, inputTable } = useConstants();
     const { model } = useParams();
+    console.log(model)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/template-list/${model}`);
+                setReadTemplate(response.data.files)
+               
+            } catch (error) {
+                console.error('Error fetching template data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+   
 
     return (
         <>
@@ -50,7 +68,7 @@ function Model() {
                 </div>
                 <div className='addcontr'>
                     <button className='button1' onClick={() => setOpenModel(true)}>اضافة نموذج</button>
-                    <Add open={openModel} onClose={() => setOpenModel(false)} />
+                    <Add model={model} open={openModel} onClose={() => setOpenModel(false)} />
                 </div>
             </div>
             <div className='contractContainer'>
@@ -64,21 +82,21 @@ function Model() {
            
             <div className='scrollbar' dir='rtl'>
                 {
-                    inputTable.filter(model => model.natureOfModel.includes(Result))
+                    readTemplate.filter(files => files.includes(Result))
                         .map((data, index) => {
                             return(
                                 <>
                                 <div className='flex '>
                             <Link
                                 dir='ltr'
-                                onClick={() => setResult(data.natureOfModel)} 
-                                to={`/نماذج العقود/${model}/${data.natureOfModel}`}
+                                onClick={() => setResult(data)} 
+                                to={`/نماذج العقود/${model}/${data}`}
 
                                 className='line-contract w-[89%] hover:bg-[#FFF5DE]'
                             >
-                                <div className='numberOfContract'>{data.number}</div>
-                                <div className='natureOfContract'>{data.natureOfModel}</div>
-                                <div className='numberOfModels'><div className='models'>{data.numberOfModel}</div></div>
+                                <div className='numberOfContract'>{index}</div>
+                                <div className='natureOfContract'>{data}</div>
+                                <div className='numberOfModels'><div className='models'>{0}</div></div>
                             </Link>
                             <button  className='h-max mt-[1%] mr-[0.5%] '><img src={update} className='w-[28px]  '   /></button>
                             <button  className='mr-[1%] h-max mt-[1%]'><img src={supp} className='w-[30px] '  /></button>

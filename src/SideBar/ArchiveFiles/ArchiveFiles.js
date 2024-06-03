@@ -5,28 +5,42 @@ import { useConstants } from "./Constants/Constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../../SideBar";
+import axios from "axios";
+import { useEffect } from "react";
 function ArchiveFiles(){
     const {search,setSearch,inputTableFiles}= useConstants();
+    const [file,setFile]=useState([]);
     const [tableInfoFiles,setTableInfoFiles]=useState(
-        {number:'',
-        fullName:'',
-        dateBirth:'',
-        sexe:'',
-        numberOfContracts:'',
-        date:'',
-        numberOfPerson:'',
-        placeOfBirth:'',
-        blood:'',
-        ID:'',
+        {
+        contractNature:'',
+        clientName:'',
+        clientBirth:'',
+        clientPlace:'',
+        idClient:'',
         address:'',
         nameFather:'',
-        firstNameMother:'',
+        nameMother:'',
         lastNameMother:'',
         phone:''}
     );
-    const handleClick = (inputTableFiles,index) => {
-        setTableInfoFiles(inputTableFiles[index])
+    const handleClick = (file,index) => {
+        setTableInfoFiles(file[index])
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/getContracts");
+                setFile(response.data.contract);
+                console.log(file)
+               
+            } catch (error) {
+                console.error('Error fetching clients data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
     
     return(
         <>
@@ -64,26 +78,26 @@ function ArchiveFiles(){
                         </div>
                         <div className="table-file">
                         {
-                                inputTableFiles.filter(file=>file.natureOfContract.includes(search)).map(
+                                file.filter(file=>file.contractNature.includes(search)).map(
                                     (info,index)=>{
                                         return(
                                             
-                                            <div className='line-file hover:bg-[#FFF5DE]' onClick={()=>handleClick(inputTableFiles, index)} key={index}  >
+                                            <div className='line-file hover:bg-[#FFF5DE]' onClick={()=>handleClick(file, index)} key={index}  >
 
                                                <div className="w-[20%] flex justify-start">
-                                                <div className='numberOfFile info2 numberOfFile'>{info.number}</div>
+                                                <div className='numberOfFile info2 numberOfFile'>{index}</div>
                                                 </div>
                                                 <div className="w-[30%] flex justify-start">
-                                                <div key={info.natureOfContract} className=' info2 natureOfContract-1 '>{info.natureOfContract}</div>
+                                                <div key={info.natureOfContract} className=' info2 natureOfContract-1 '>{info.contractNature}</div>
                                                 </div>
                                                 <div className="w-[20%] flex justify-center">
                                                 <div className=' info2 '>{info.model}</div>
                                                 </div>
                                                 <div className="w-[20%] flex justify-center">
-                                                <div className=' info2'>{info.date}</div>
+                                                <div className=' info2'>{info.formattedDate}</div>
                                                 </div>
                                                 <div className="w-[10%] flex justify-center">
-                                                <div className=' info2'>{info.numberOfPerson}</div>
+                                                <div className=' info2'>{info.cote}</div>
                                                 </div>
                     
                                             </div>
@@ -101,35 +115,28 @@ function ArchiveFiles(){
                         <div className="info-file ">
 
                                     <div className="entete">
-                                        <div className="text-[#284A68] font-bold mt-4 text-xl entete-1 text-center mb-3">{tableInfoFiles.natureOfContract}</div>
+                                        <div className="text-[#284A68] font-bold mt-4 text-xl entete-1 text-center mb-3">{tableInfoFiles.contractNature}</div>
                                         <div className="text-[#284A68] font-bold mt-2-text-xl mb-2">{tableInfoFiles.model}</div>
                                         <div className="text-[#284A68] font-bold mt-2-text-xl">{tableInfoFiles.number}</div>
 
                                     </div>
                                     <div className="informations-file-1  mt-4 mr-4">
                                            
-                                            <div className="data text-sm text-[#284A68]" > اسم الزبون : {tableInfoFiles.fullName}</div>
-                                            <div className="data text-sm text-[#284A68]" >تاريخ الميلاد : {tableInfoFiles.dateBirth}</div>
-                                            <div className="data text-sm text-[#284A68]">مكان الميلاد : {tableInfoFiles.placeOfBirth}</div>
+                                            <div className="data text-sm text-[#284A68]" > اسم الزبون : {tableInfoFiles.clientName}</div>
+                                            <div className="data text-sm text-[#284A68]" >تاريخ الميلاد : {tableInfoFiles.clientBirth}</div>
+                                            <div className="data text-sm text-[#284A68]">مكان الميلاد : {tableInfoFiles.clientPlace}</div>
 
                                         
                                         
-                                        <div className="flex  data data-1 justify-between text-sm text-[#284A68]" >
-                                           
-                                            <div >الجنس : {tableInfoFiles.sexe} </div>            
-                                            
-                                            <div className="ml-12">الزمرة الدموية : {tableInfoFiles.blood} </div>    
-
-                                        </div>
                                         
-                                        <div  className="data text-sm text-[#284A68]">رقم التعريف الوطني : {tableInfoFiles.ID}</div>
+                                        <div  className="data text-sm text-[#284A68]">رقم التعريف الوطني : {tableInfoFiles.idClient}</div>
                                         
                                         <div  className="data text-sm text-[#284A68]">العنوان : {tableInfoFiles.address}</div>
                                         
                                         <div  className="data text-sm text-[#284A68]">اسم الاب : {tableInfoFiles.nameFather}</div>
                                         
                                         <div className="flex justify-between  data data-1 text-sm text-[#284A68]">
-                                            <div >اسم الام : {tableInfoFiles.firstNameMother}</div> 
+                                            <div >اسم الام : {tableInfoFiles.nameMother}</div> 
                                             <div className="ml-14">لقب الام : {tableInfoFiles.lastNameMother}</div>  
 
                                         </div>

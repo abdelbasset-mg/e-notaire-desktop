@@ -25,7 +25,7 @@ import {
 
 
     
-    const SideBar = () => {
+    const SideBar = ({frequence}) => {
       const {user} = useUser();
       const { admin } = useConstants();
 

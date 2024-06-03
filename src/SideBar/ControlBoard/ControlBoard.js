@@ -14,6 +14,7 @@ import o3 from '../../icons/3.svg';
 import { useUser } from '../../context/userContext';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { set } from 'mongoose';
 
 
 
@@ -34,11 +35,19 @@ const router = createBrowserRouter([
 
 
 function ControlBoard(){
-    const { numberOfAct1,numberOfAct2,numberOfAct3 } = useConstants();
+    const [act1,setAct1] = useState("");
+    const [act2,setAct2] = useState("");
+    const [act3,setAct3] = useState("");
+    const [numberOfAct1,setNumberOfAct1] = useState(0)
+    const [numberOfAct2,setNumberOfAct2] = useState(0)
+    const [numberOfAct3,setNumberOfAct3] = useState(0)
+
+
     const { user } = useUser();
     const [clientCount, setClientCount] = useState(0)
     const [contractCount, setContractCount] = useState(0)
     const [templateCount, setTemplateCount] = useState(0)
+    const [frequence,setFrequence]=useState([])
 
     useEffect(() => {
         const fetchData = async (req,res) => {
@@ -46,10 +55,19 @@ function ControlBoard(){
           const contractCount = await axios.get("http://localhost:5000/contracts-count")
           const templateCount = await axios.get("http://localhost:5000/templates-count")
 
+
           setClientCount(clientCount.data.doubleContractCount)
           setContractCount(contractCount.data.contractCount)
           setTemplateCount(templateCount.data.adjustedJsonFileCount)
-
+          
+          setFrequence(contractCount.data.topThreeFrequencies)
+          console.log(contractCount.data.topThreeFrequencies)
+          setAct1(frequence[0]?.contractNature || '');
+          setAct2(frequence[1]?.contractNature || '');
+          setAct3(frequence[2]?.contractNature || '');
+          setNumberOfAct1(frequence[0]?.frequency || 0);
+          setNumberOfAct2(frequence[1]?.frequency || 0);
+          setNumberOfAct3(frequence[2]?.frequency || 0);
         }
         console.log(contractCount)
         console.log(templateCount)
@@ -84,7 +102,7 @@ function ControlBoard(){
             
                     <div className='circles'>
                         <div className='circle'><div className='c1'><div className='c2'><div className='number'>{contractCount}</div></div></div><div className='sousTitre'>أرشيف العقود</div></div>
-                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{clientCount}</div></div></div><div className='sousTitre'>أرشيف الزبائن</div></div>
+                        <div className='circle'><div className='c1'><div className='c2'><div className='number'>{contractCount}</div></div></div><div className='sousTitre'>أرشيف الزبائن</div></div>
                         <div className='circle'><div className='c1'><div className='c2'><div className='number'>{templateCount}</div></div></div><div className='sousTitre'>نماذج العقود</div></div>
                     </div>
             </div>
@@ -118,7 +136,7 @@ function ControlBoard(){
                     <div className='contract'>
                     <div className='ordre mt-[2%]'><img src={o1}></img></div>
                        <div className='flex flex-col w-[100%] text-right '>
-                        <div className='contract-c'>تنازل عن حصص في شركة</div>
+                        <div className='contract-c'>{act1}</div>
                         <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct1} عقد</div>
                        </div>
                     </div>
@@ -127,7 +145,7 @@ function ControlBoard(){
                     <div className='contract'>
                     <div className='ordre mt-[2%]'><img src={o2}></img></div>
                        <div className='flex flex-col w-[100%] text-right '>
-                        <div className='contract-c'> عقد بيع و شراء قطعة أرض</div>
+                        <div className='contract-c'> {act2}</div>
                         <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct2} عقد</div>
                        </div>
 
@@ -136,7 +154,7 @@ function ControlBoard(){
                     <div className='contract'>
                     <div className='ordre mt-[2%]'><img src={o3}></img></div>
                        <div className='flex flex-col w-[100%] text-right '>
-                        <div className='contract-c'>كراء مسكن </div>
+                        <div className='contract-c'>{act3}  </div>
                         <div className='numberOfAct text-[0.6em] mr-[2%]'>تم توثيق {numberOfAct3} عقد</div>
                        </div>
 

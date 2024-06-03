@@ -12,6 +12,8 @@ import SideBar from "../../../../SideBar";
 import { useDispatch } from "react-redux";
 // import { addContract } from "../../../../store/contractsSlice";
 import { addContract } from "../../../../store/reducers/contract.reducers";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -26,39 +28,59 @@ const router = createBrowserRouter([
 
 function ChooseModel() {
   const { contract, model } = useParams();
-  const [seller, setSeller] = useState("");
-  const [buyer, setBuyer] = useState("");
-  const [idBuyer, setIdBuyer] = useState("");
-  const [ragional, setRagional] = useState("");
-  const [sellerBirth, setSellerBirth] = useState("");
-  const [buyerBirth, setBuyerBirth] = useState("");
-  const [rooms, setRooms] = useState("");
+  const [clientName, setClientName] = useState("");
+  const [idClient, setIdClient] = useState("");
+  const [clientBirth, setClientBirth] = useState("");
+  const [cote, setCote] = useState("");
+  const [clientPlace, setClientPlace] = useState("");
+  const [address, setAddress] = useState("");
+  const [nameFather, setNameFather] = useState("");
+  const [nameMother, setNameMother] = useState("");
+  const [lastNameMother, setLastNameMother] = useState("");
+  const [phone, setPhone] = useState("");
+  const [sexe, setSexe] = useState("");
 
-  const dispatch = useDispatch();
-  const handleSubmit = (e) => {
-    // sellerName, buyerName, idSeller, idBuyer, dateBirthSeller, dateBirthBuyer, numberOfRooms
 
-    dispatch(
-      addContract({
-        sellerName: seller,
-        buyerName: buyer,
-        idSeller: idBuyer,
-        idBuyer: ragional,
-        dateBirthSeller: sellerBirth,
-        dateBirthBuyer: buyerBirth,
-        numberOfRooms: rooms,
-      })
-    );
-  };
+
+
+
+  const onSubmit = async (event) =>{
+    event.preventDefault();
+    try{
+    const response = await axios.post("http://localhost:5000/contracts", {
+      clientName:clientName,
+      idClient:idClient,
+      clientBirth:clientBirth,
+      clientPlace:clientPlace,
+      address:address,
+      nameFather:nameFather,
+      nameMother:nameMother,
+      lastNameMother:lastNameMother,
+      phone:phone,
+      cote:cote,
+      sexe:sexe,
+      contractNature:contract,
+      model:model
+      
+    })
+   
+    toast.success("تم اضافة العقد بنجاح")
+}catch(error){
+    console.error("add failed",error)
+    toast.error("الرجاء ادخال جميع المعلومات")
+
+}
+}
+
 
   return (
     <>
-      <div className="flex flex-row-reverse h-[100%]">
+      <form onSubmit={onSubmit}  className="flex flex-row-reverse h-[100%]">
         <div className="w-[13%]">
           <SideBar />
         </div>
-        <div className="w-[87%] flex flex-col">
-          <div className="title">
+        <div dir="rtl" className="w-[87%] flex flex-col overflow-y-scroll">
+          <div className="title" dir="ltr">
             <div className="title-1">تحرير عقد</div>
           </div>
           <div>
@@ -81,11 +103,11 @@ function ChooseModel() {
 
           <div className="flex flex-row mt-[4%] mr-[2%]" dir="rtl">
             <div className="info-contr">
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="input-contr">
                   <label className="label-3" for="seller-1">
                     {" "}
-                    البائع
+                    الاسم الكامل للزبون
                   </label>
                   <input
                     className="input-contr-1"
@@ -93,94 +115,169 @@ function ChooseModel() {
                     name="seller-1"
                     id="seller-1"
                     placeholder="طرف"
-                    value={seller}
-                    onChange={(e) => setSeller(e.target.value)}
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
                   ></input>
                 </div>
-                <div className="input-contr">
-                  <label className="label-3" for="buyer-1">
-                    المشتري{" "}
-                  </label>
-                  <input
-                    className="input-contr-1"
-                    type="text"
-                    name="buyer-1"
-                    id="buyer-1"
-                    value={buyer}
-                    onChange={(e) => setBuyer(e.target.value)}
-                    placeholder="طرف"
-                  ></input>
-                </div>
+            
                 <div className="input-contr">
                   <label className="label-3" for="id-buyer">
-                    تعريف البائع
+                     رقم تعريف الزبون 
                   </label>
                   <input
                     className="input-contr-1"
                     type="number"
                     name="id-buyer"
                     id="id-buyer"
-                    value={idBuyer}
-                    onChange={(e) => setIdBuyer(e.target.value)}
+                    value={idClient}
+                    onChange={(e) => setIdClient(e.target.value)}
                     placeholder="رقم"
                   ></input>
                 </div>
+             
                 <div className="input-contr">
-                  <label className="label-3" for="ragional">
-                    {" "}
-                    تعريف المشتري
-                  </label>
-                  <input
-                    className="input-contr-1"
-                    type="number"
-                    name="ragional"
-                    id="ragional"
-                    value={ragional}
-                    onChange={(e) => setRagional(e.target.value)}
-                    placeholder="رقم"
-                  ></input>
-                </div>
-                <div className="input-contr">
-                  <label className="label-3" for="seller">
-                    مولد البائع
+                  <label className="label-3" for="birth">
+                    مولد الزبون
                   </label>
                   <input
                     className="input-contr-1"
                     type="date"
-                    name="seller"
-                    id="seller"
-                    value={sellerBirth}
-                    onChange={(e) => setSellerBirth(e.target.value)}
+                    name="birth"
+                    id="birth"
+                    value={clientBirth}
+                    onChange={(e) => setClientBirth(e.target.value)}
                     placeholder="طرف"
                   ></input>
                 </div>
+
                 <div className="input-contr">
-                  <label className="label-3" for="buyer">
-                    مولد المشتري
+                  <label className="label-3" for="place">
+                    مكان ميلاد الزبون
                   </label>
                   <input
                     className="input-contr-1"
-                    type="date"
-                    name="buyer"
-                    id="buyer"
-                    value={buyerBirth}
-                    onChange={(e) => setBuyerBirth(e.target.value)}
+                    type="text"
+                    name="place"
+                    id="place"
+                    value={clientPlace}
+                    onChange={(e) => setClientPlace(e.target.value)}
+                    placeholder="طرف"
                   ></input>
                 </div>
+
                 <div className="input-contr">
-                  <label className="label-3" for="rooms">
-                    عدد الغرف
+                  <label className="label-3" for="sexe">
+                    جنس الزبون
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="text"
+                    name="sexe"
+                    id="sexe"
+                    value={sexe}
+                    onChange={(e) => setSexe(e.target.value)}
+                    placeholder="طرف"
+                  ></input>
+                </div>
+
+
+                
+                <div className="input-contr">
+                  <label className="label-3" for="address-1">
+                    {" "}
+                    العنوان 
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="text"
+                    name="address-1"
+                    id="address-1"
+                    placeholder="طرف"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  ></input>
+                </div>
+
+                <div className="input-contr">
+                  <label className="label-3" for="father-1">
+                    {" "}
+                    اسم الأب
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="text"
+                    name="father-1"
+                    id="father-1"
+                    placeholder="طرف"
+                    value={nameFather}
+                    onChange={(e) => setNameFather(e.target.value)}
+                  ></input>
+                </div>
+
+
+                <div className="input-contr">
+                  <label className="label-3" for="mother-1">
+                    {" "}
+                    اسم الأم
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="text"
+                    name="mother-1"
+                    id="mother-1"
+                    placeholder="طرف"
+                    value={nameMother}
+                    onChange={(e) => setNameMother(e.target.value)}
+                  ></input>
+                </div>
+
+
+                <div className="input-contr">
+                  <label className="label-3" for="last-1">
+                    {" "}
+                    لقب الأم
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="text"
+                    name="last-1"
+                    id="last-1"
+                    placeholder="طرف"
+                    value={lastNameMother}
+                    onChange={(e) => setLastNameMother(e.target.value)}
+                  ></input>
+                </div>
+
+                <div className="input-contr">
+                  <label className="label-3" for="phone">
+                    رقم الهاتف
                   </label>
                   <input
                     className="input-contr-1"
                     type="number"
-                    name="rooms"
-                    id="rooms"
-                    value={rooms}
-                    onChange={(e) => setRooms(e.target.value)}
+                    name="phone"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     placeholder="رقم"
                   ></input>
                 </div>
+    
+                <div className="input-contr">
+                  <label className="label-3" for="cote">
+                    عدد الأطراف
+                  </label>
+                  <input
+                    className="input-contr-1"
+                    type="number"
+                    name="cote"
+                    id="cote"
+                    value={cote}
+                    onChange={(e) => setCote(e.target.value)}
+                    placeholder="رقم"
+                  ></input>
+                </div>
+                
               </form>
             </div>
 
@@ -220,14 +317,16 @@ function ChooseModel() {
                 </div>
               </div>
               <div className="save-info-contr ">
-                <button
-                  onClick={handleSubmit}
+                
+              </div>
+              <button
+                  type="submit"
                   className="save-1 mt-[16%] bg-[#284A68] text-white"
                 >
                   حفظ
                 </button>
-              </div>
               <div className="download">
+                
                 <button className="down mt-[4%] bg-[#284A68] text-white">
                   {" "}
                   تحميل PDF{" "}
@@ -236,7 +335,7 @@ function ChooseModel() {
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }

@@ -6,22 +6,26 @@ import vector1 from '../../../../icons/vector1.svg';
 import Delete from '../../../../icons/Delete.svg';
 import change from '../../../../icons/change.svg';
 import rep from '../../../../icons/rep.svg';
-import Add2 from './Add2'; 
+import Add2 from './Add2';
 import SideBar from '../../../../SideBar';
 import './Model2.css';
 import { useConstants_1 } from './Constants/Constants';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { set } from 'mongoose';
-
 
 function Model2() {
     const { model, Result } = useParams();
     const [openModel, setOpenModel] = useState(false);
-    const [newItems, setNewItems] = useState([{ title1: "", title2: "", editing: true }]);
-    const [isEditing, setIsEditing] = useState(false); 
+    const [newItems, setNewItems] = useState(() => {
+        const savedItems = localStorage.getItem('newItems');
+        return savedItems ? JSON.parse(savedItems) : [{ title1: "", title2: "", editing: true }];
+    });
+    const [isEditing, setIsEditing] = useState(false);
     const { inputTermText, inputTermTitle, setInputTermText, setInputTermTitle } = useConstants_1();
- 
+    const [mode, setMode] = useState(() => {
+        const savedMode = localStorage.getItem('mode');
+        return savedMode || "hifdh";
+    });
 
     // Function to handle form submission
     const onSubmit = async (event, index) => {
@@ -33,42 +37,47 @@ function Model2() {
             templateNature: model
         };
         try {
-            const response = await axios.post("http://localhost:5000/save-term", term);
-            toast.success("Term saved");
+            if (mode === "hifdh") {
+                const response = await axios.post("http://localhost:5000/save-term", term);
+                toast.success("Term saved");
+            } else if (mode === "ta3dil") {
+                const response = await axios.put("http://localhost:5000/update-term", term);
+                toast.success("Term updated");
+            }
             const updatedItems = [...newItems];
-            updatedItems[index].editing = false; 
+            updatedItems[index].editing = false;
             setNewItems(updatedItems);
+            localStorage.setItem('newItems', JSON.stringify(updatedItems));
         } catch (error) {
-            console.log("Failed to save term: ", error);
-            toast.error("Failed to save term");
+            console.log("Failed to save/update term: ", error);
+            toast.error("Failed to save/update term");
         }
     };
-
-
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/load-template/${model}/${Result}`);
-                console.log(response.data); // Assuming response contains data
-                setInputTermText(response.data)
-                setInputTermTitle(response.data)
+                if (mode === "hifdh") {
+                    const response = await axios.get(`http://localhost:5000/load-template/${model}/${Result}`);
+                    console.log(response.data); // Assuming response contains data
+                    setInputTermText(response.data);
+                    setInputTermTitle(response.data);
+                }
             } catch (error) {
                 console.error("Error fetching template:", error);
             }
         }
-        
+
         fetchData();
-    
-    }, []); // Assuming Result is a dependency
-    
-    
+
+    }, [mode]); // Assuming Result is a dependency
 
     // Function to handle input change
     const handleInputChange = (event, index, field) => {
         const updatedItems = [...newItems];
         updatedItems[index][field] = event.target.value;
         setNewItems(updatedItems);
+        localStorage.setItem('newItems', JSON.stringify(updatedItems));
     };
 
     // Function to handle edit button click
@@ -76,8 +85,15 @@ function Model2() {
         const updatedItems = [...newItems];
         updatedItems[index].editing = true; // Enable editing
         setNewItems(updatedItems);
+        localStorage.setItem('newItems', JSON.stringify(updatedItems));
     };
-   
+
+    // Function to handle mode change
+    const handleModeChange = () => {
+        const newMode = mode === "hifdh" ? "ta3dil" : "hifdh";
+        setMode(newMode);
+        localStorage.setItem('mode', newMode);
+    };
 
     return (
         <div className='flex flex-row-reverse h-[100%]'>
@@ -118,9 +134,6 @@ function Model2() {
                                     <div className='content2'>
                                         <div className='newitem-title'>
                                             محتوى البند
-                                            <button className='button2'><img src={vector1} alt="Vector1" />تحديد المتغير</button>
-                                            <button className='button3' onClick={() => setOpenModel(true)}><img src={vector} alt="Vector" />توليد القائمة</button>
-                                            <Add2 open={openModel} onClose={() => setOpenModel(false)}></Add2>
                                         </div>
                                         <textarea
                                             className='item-text2 focus:outline-none'
@@ -150,9 +163,7 @@ function Model2() {
                         </div>
                     </div>
                     <div className='btn w-[30%]' >
-                        <button className="btnchange"><div><img src={change} alt="Change" /></div><div className='icon-model'>تعديل اسم النموذج</div></button>
-                        <button className="btnrep"><div><img src={rep} alt="Rep" /></div><div className='icon-model'>تكرير النموذج</div></button>
-                        <button className="btndel"><div><img src={Delete} alt="Delete" /></div><div className='icon-model'>حذف النموذج</div></button>
+                        
                     </div>
                 </div>
             </div>

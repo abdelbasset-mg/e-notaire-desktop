@@ -5,26 +5,45 @@ import { useConstants } from "./Constants/Constants";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../../SideBar";
+import axios from "axios";
+import { useEffect } from "react";
 function ArchiveClients(){
-    const {search,setSearch,inputTableClients}= useConstants();
+    const {search,setSearch,inputTableFiles}= useConstants();
+    const [file,setFile]=useState([]);
     const [tableInfo,setTableInfo]=useState(
-        {number:'',
-        fullName:'',
-        dateBirth:'',
+        {
+        contractNature:'',
+        clientName:'',
+        clientBirth:'',
+        clientPlace:'',
+        idClient:'',
         sexe:'',
-        numberOfContracts:'',
-        placeOfBirth:'',
-        blood:'',
-        ID:'',
         address:'',
         nameFather:'',
-        firstNameMother:'',
+        nameMother:'',
         lastNameMother:'',
         phone:''}
     );
     const handleClick= (inputTableClients,index) => {
         setTableInfo(inputTableClients[index])
     }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/getContracts");
+                setFile(response.data.contract);
+                console.log(file)
+               
+            } catch (error) {
+                console.error('Error fetching clients data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    
+
+    
     
     return(
         <>
@@ -62,26 +81,26 @@ function ArchiveClients(){
                         </div>
                         <div className="table-clt">
                         {
-                                inputTableClients.filter(client=>client.fullName.includes(search)).map(
+                                file.filter(file=>file.clientName.includes(search)).map(
                                     (info,index)=>{
                                         return(
                                             
-                                            <div className='line-client hover:bg-[#FFF5DE]' onClick={()=>handleClick(inputTableClients, index)} key={index}  >
+                                            <div className='line-client hover:bg-[#FFF5DE]' onClick={()=>handleClick(file, index)} key={index}  >
 
                                                <div className="w-[20%] flex justify-start mr-[3%] ">
-                                                   <div className=' info2  '>{info.number}</div>
+                                                   <div className=' info2  '>{index}</div>
                                                </div>
                                                <div className="w-[20%] flex justify-start">
-                                                   <div key={info.fullName} className='info2  '>{info.fullName}</div>
+                                                   <div key={info.clientName} className='info2  '>{info.clientName}</div>
                                                </div>
                                                 <div className="w-[20%] flex justify-center text-center">
-                                                   <div className='birth info2'>{info.dateBirth}</div>
+                                                   <div className='birth info2'>{info.clientBirth}</div>
                                                 </div>
                                                 <div className="w-[20%] flex justify-center text-center ">
                                                 <div className='sexe info2 bg-[#284A68] text-white rounded-lg w-[45%]'><div >{info.sexe}</div></div>
                                                 </div>
                                                 <div className="w-[20%] flex justify-center text-center">
-                                                <div className='numberOfContracts info2'>{info.numberOfContracts}</div>
+                                                <div className='numberOfContracts info2'>{1}</div>
                                                 </div>
                                               
                     
@@ -100,13 +119,13 @@ function ArchiveClients(){
                         <div className="info-client ">
 
                                     <div className="entete">
-                                        <div className="text-[#284A68] font-bold mt-4 text-xl">{tableInfo.fullName}</div>
-                                        <div className="text-[#284A68] font-bold mt-2-text-xl">{tableInfo.number}</div>
+                                        <div className="text-[#284A68] font-bold mt-4 text-xl">{tableInfo.clientName}</div>
+                                        {/* <div className="text-[#284A68] font-bold mt-2-text-xl">{}</div> */}
                                     </div>
                                     <div className="informations-client-1  mt-4 mr-4">
                                         
-                                            <div className="data text-sm text-[#284A68]" >تاريخ الميلاد : {tableInfo.dateBirth}</div>
-                                            <div className="data text-sm text-[#284A68]">مكان الميلاد : {tableInfo.placeOfBirth}</div>
+                                            <div className="data text-sm text-[#284A68]" >تاريخ الميلاد : {tableInfo.clientBirth}</div>
+                                            <div className="data text-sm text-[#284A68]">مكان الميلاد : {tableInfo.clientPlace}</div>
 
                                         
                                         
@@ -114,18 +133,18 @@ function ArchiveClients(){
                                            
                                             <div >الجنس : {tableInfo.sexe} </div>            
                                             
-                                            <div className="ml-12">الزمرة الدموية : {tableInfo.blood} </div>    
+                                              
 
                                         </div>
                                         
-                                        <div  className="data text-sm text-[#284A68]">رقم التعريف الوطني : {tableInfo.ID}</div>
+                                        <div  className="data text-sm text-[#284A68]">رقم التعريف الوطني : {tableInfo.idClient}</div>
                                         
                                         <div  className="data text-sm text-[#284A68]">العنوان : {tableInfo.address}</div>
                                         
                                         <div  className="data text-sm text-[#284A68]">اسم الاب : {tableInfo.nameFather}</div>
                                         
                                         <div className="flex justify-between  data data-1 text-sm text-[#284A68]">
-                                            <div >اسم الام : {tableInfo.firstNameMother}</div> 
+                                            <div >اسم الام : {tableInfo.nameMother}</div> 
                                             <div className="ml-14">لقب الام : {tableInfo.lastNameMother}</div>  
 
                                         </div>
@@ -137,7 +156,7 @@ function ArchiveClients(){
                                     <div className="foot-client">
  
                                               <div className="circle-clt mt-4">
-                                              <div className='circle circle-1 mb-4' ><div className='c1 c1-1 mr-5'><div className='c2 c2-1'><div className='number number-1'>{tableInfo.numberOfContracts}</div></div></div><div className='sousTitre sousTitre-1'> <div className='number-2'>{tableInfo.numberOfContracts}</div>   عدد العقود المحررة</div></div>
+                                              <div className='circle circle-1 mb-4' ><div className='c1 c1-1 mr-5'><div className='c2 c2-1'><div className='number number-1'>{1}</div></div></div><div className='sousTitre sousTitre-1'> <div className='number-2'>{tableInfo.numberOfContracts}</div>   عدد العقود المحررة</div></div>
                                               </div>
                                     </div>
                                     

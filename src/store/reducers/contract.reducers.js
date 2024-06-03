@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const api = "http://localhost:5000/contracts/";
+const api = "http://localhost:5000/contracts";
 
 const initialState = {
   contract: [],
@@ -16,11 +16,10 @@ export const addContract = createAsyncThunk("contract", async (contract) => {
     return response.data;
   } catch (error) {
     console.log("error", error);
-    throw error;
+    // Wrap the error to be more informative
+    return { error: error.message };
   }
 });
-
-
 
 const contractSlice = createSlice({
   name: "contract",
@@ -34,14 +33,17 @@ const contractSlice = createSlice({
       .addCase(addContract.fulfilled, (state, action) => {
         if (action.payload.status === 200) {
           state.status = "success";
-          toast.success("contract added successfully");
-        }else{
-            toast.error(action.payload.message || "Failed to add contract")
+          toast.success("Contract added successfully");
+        } else {
+          state.status = "failed";
+          toast.error(action.payload.message || "Failed to add contract");
         }
       })
       .addCase(addContract.rejected, (state, action) => {
         state.status = "failed";
-        toast.error(action.payload.message || "Failed to add contract");
+        // Safely access message property
+        const errorMessage = action.error?.message || "Failed to add contract";
+        toast.error(errorMessage);
       });
   },
 });

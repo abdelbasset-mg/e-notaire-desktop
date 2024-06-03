@@ -23,8 +23,8 @@ const FileGraph = () => {
         const fetchData = async () => {
             try {
                 const currentDateFormatted = formatDate(currentDate);
-                const contractDataResponse = await axios.get(`http://localhost:5000/templates-count?date=${currentDateFormatted}`);
-                const contractCount = contractDataResponse.data.adjustedJsonFileCount;
+                const contractDataResponse = await axios.get(`http://localhost:5000/contracts-count?date=${currentDateFormatted}`);
+                const contractCount = contractDataResponse.data.contractCount;
                 setContractCount(contractCount);
             } catch (error) {
                 console.error("Erreur lors de la récupération de contractCount :", error);
